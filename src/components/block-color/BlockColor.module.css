@@ -1,0 +1,27 @@
+.blockColor h2{
+    margin-bottom: var(--space-48);
+}
+
+.blockColorContent{
+    padding: var(--space-96) var(--space-48);
+    background-color: var(--neutral-15);
+}
+
+.blockColorContent p{
+    color: var(--color-09);
+    text-align: justify;
+    font-size:var(--fs-24);
+    font-style: normal;
+    font-weight: 400;
+    line-height: 150%;
+}
+
+@media screen and ( width < 768px){
+    .blockColorContent{
+        padding: var(--space-56) var(--space-32);
+    }
+
+    .blockColorContent p{
+        font-size: var(--fs-18);
+    }
+}

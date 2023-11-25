@@ -1,0 +1,40 @@
+.Banner {
+    position: relative;
+}
+
+.infoBanner {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    max-width: 1320px;
+    margin: 0 auto;
+    left: 0;
+    right: 0;
+    padding: 0 15px;
+}
+
+.infoBanner h1 {
+    color: var(--color-01);
+    margin-bottom: var(--space-24);
+}
+
+.infoBanner p {
+    color: var(--color-09);
+    margin-bottom: var(--space-24);
+    font-size: var(--fs-24);
+    font-weight: 400;
+}
+
+.innerInfoBanner {
+    max-width: 50%;
+}
+
+.innerImgBanner {
+    text-align: center;
+}
+
+@media screen and (width < 768px) {
+    .innerInfoBanner {
+        max-width: 100%;
+    }
+}

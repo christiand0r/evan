@@ -1,95 +1,92 @@
-import Image from 'next/image'
-import styles from './page.module.css'
+import VideoBanner from "@/components/video-banner/VideoBanner";
+import Areas from '@/components/Areas/Areas';
+import GridServicios from '@/components/grid-servivios/GridServicios';
+import BannerMiddle from '@/components/banner-middle/BannerMiddle';
+import SplitRow from "@/components/split-row/SliptRow";
+import BannerGradient from '@/components/banner-gradient/BannerGradient';
+import LineStep from "@/components/line-steps/LineSteps";
+import SplitGradient from "@/components/split-gradient/SplitGradient";
 
-export default function Home() {
+import { getDataHome } from "./Apis";
+import { parseVideoData, parseBannerMiddleData, parseSplitRowData, parseBannerGradient, parseSplitGradient, parseInfographicSteps } from "./DataParser";
+
+export const metadata = {
+  title: 'Evanhub Home',
+  description: 'Evanhun website home page',
+}
+
+const CMS_HOST_URL = process.env.CMS_HOST;
+
+const Home = async () => {
+
+  const dataResponse = await getDataHome()
+
+  const videoData = parseVideoData(dataResponse.data.attributes.banner_video);
+  const bannerMiddleData = parseBannerMiddleData(dataResponse.data.attributes.banner_middle);
+  const splitRowData = parseSplitRowData(dataResponse.data.attributes.split_row);
+  const bannerGradientData = parseBannerGradient(dataResponse.data.attributes.banner_gradient);
+  const splitGradientData = parseSplitGradient(dataResponse.data.attributes.split_gradient);
+  const stepsData = parseInfographicSteps(dataResponse.data.attributes.steps);
+
+
   return (
-    <main className={styles.main}>
-      <div className={styles.description}>
-        <p>
-          Get started by editing&nbsp;
-          <code className={styles.code}>src/app/page.js</code>
-        </p>
-        <div>
-          <a
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{' '}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className={styles.vercelLogo}
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
-        </div>
-      </div>
-
-      <div className={styles.center}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
+    <main className='main'>
+      <div className='fullwidth'>
+        <VideoBanner 
+            urlVideo={videoData.urlVideo} 
+            titleBanner={videoData.titleVideo} 
+            titleButton={videoData.buttonVideo} 
+            targetButton={videoData.targetButtonVideo} 
+            typeButton={videoData.typeButtonvideo} 
         />
-      </div>
-
-      <div className={styles.grid}>
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Docs <span>-&gt;</span>
-          </h2>
-          <p>Find in-depth information about Next.js features and API.</p>
-        </a>
-
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Learn <span>-&gt;</span>
-          </h2>
-          <p>Learn about Next.js in an interactive course with&nbsp;quizzes!</p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Templates <span>-&gt;</span>
-          </h2>
-          <p>Explore the Next.js 13 playground.</p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Deploy <span>-&gt;</span>
-          </h2>
-          <p>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
+        <Areas 
+            slideLg={4} 
+            slideMd={2.3} 
+            slideSm={1.3} 
+            extraClass='pt-xxl' 
+        />
+        <GridServicios />
+        <SplitGradient 
+            urlImage={CMS_HOST_URL + splitGradientData.urlImage}
+            title={splitGradientData.title}
+        />
+        <LineStep 
+            steps={stepsData.steps} 
+            titleSection={stepsData.title_section}
+            showButton={stepsData.show_button}
+            labelButton={stepsData.label_button}
+            urlButton={stepsData.url_button}
+            targetButton={stepsData.target_button}
+            typeButton={stepsData.type_button}
+        />
+        <BannerMiddle 
+            banner={CMS_HOST_URL + bannerMiddleData.urlBannerLg} 
+            banner_sm={CMS_HOST_URL + bannerMiddleData.urlBannerSm} 
+            title={bannerMiddleData.title_banner} 
+            image={CMS_HOST_URL + bannerMiddleData.iconBanner} 
+            customClass={bannerMiddleData.classes} 
+        />
+        <SplitRow 
+            image={CMS_HOST_URL + splitRowData.urlImage} 
+            title={splitRowData.title} 
+            description={splitRowData.description} 
+            url_button={splitRowData.url_button} 
+            label_button={splitRowData.label_button} 
+            type_button={splitRowData.type_button} 
+        />
+        <BannerGradient 
+            title={bannerGradientData.title} 
+            type_gradient={bannerGradientData.typeGradient} 
+            type_button={bannerGradientData.typeButton} 
+            label_button={bannerGradientData.labelButton} 
+            url_button={bannerGradientData.urlButton} 
+            target_button={bannerGradientData.targetButton} 
+            class_button={bannerGradientData.classButton} 
+        />
       </div>
     </main>
   )
 }
+
+
+export default Home;

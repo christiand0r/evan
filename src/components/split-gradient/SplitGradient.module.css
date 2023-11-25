@@ -1,0 +1,49 @@
+.splitGradient h2{
+    color: white;
+    font-size: var(--fs-39);
+    font-weight: 400;
+    font-family: var(--secondary-font);
+    margin-bottom: 0;
+}
+
+.splitLeft{
+    background: var(--gradient-04);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 100px;
+    color: white;
+}
+
+.splitRight{
+    position: relative;
+    overflow: hidden;
+}
+
+.splitRight img{
+    height: 100%;
+    object-fit: cover;
+}
+
+@media screen and (max-width: 768px){
+    .splitRow{
+        flex-direction: column-reverse;
+    }
+
+    .splitGradient h2 {
+
+        font-size: var(--fs-27);
+    }
+
+    .splitLeft{
+        padding: 80px 40px;
+    }
+
+    .splitRight img {
+        height: 100%;
+        object-fit: cover;
+        width: 100%;
+        min-height: 287px;
+        max-height: 287px;
+    }
+}

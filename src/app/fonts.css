@@ -1,0 +1,248 @@
+/** Souce Serif Pro **/
+
+@font-face {
+    font-family: 'Source Serif Pro';
+    src: url('../../public/fonts/SourseSerifPro/SourceSerifPro-BoldIt.woff2') format('woff2'),
+        url('../../public/fonts/SourseSerifPro/SourceSerifPro-BoldIt.woff') format('woff'),
+        url('../../public/fonts/SourseSerifPro/SourceSerifPro-BoldIt.svg#SourceSerifPro-BoldIt') format('svg');
+    font-weight: bold;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Source Serif Pro';
+    src: url('../../public/fonts/SourseSerifPro/SourceSerifPro-ExtraLightIt.woff2') format('woff2'),
+        url('../../public/fonts/SourseSerifPro/SourceSerifPro-ExtraLightIt.woff') format('woff'),
+        url('../../public/fonts/SourseSerifPro/SourceSerifPro-ExtraLightIt.svg#SourceSerifPro-ExtraLightIt') format('svg');
+    font-weight: 200;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Source Serif Pro';
+    src: url('../../public/fonts/SourseSerifPro/SourceSerifPro-ExtraLight.woff2') format('woff2'),
+        url('../../public/fonts/SourseSerifPro/SourceSerifPro-ExtraLight.woff') format('woff'),
+        url('../../public/fonts/SourseSerifPro/SourceSerifPro-ExtraLight.svg#SourceSerifPro-ExtraLight') format('svg');
+    font-weight: 200;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Source Serif Pro';
+    src: url('../../public/fonts/SourseSerifPro/SourceSerifPro-BlackIt.woff2') format('woff2'),
+        url('../../public/fonts/SourseSerifPro/SourceSerifPro-BlackIt.woff') format('woff'),
+        url('../../public/fonts/SourseSerifPro/SourceSerifPro-BlackIt.svg#SourceSerifPro-BlackIt') format('svg');
+    font-weight: 900;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Source Serif Pro';
+    src: url('../../public/fonts/SourseSerifPro/SourceSerifPro-Black.woff2') format('woff2'),
+        url('../../public/fonts/SourseSerifPro/SourceSerifPro-Black.woff') format('woff'),
+        url('../../public/fonts/SourseSerifPro/SourceSerifPro-Black.svg#SourceSerifPro-Black') format('svg');
+    font-weight: 900;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Source Serif Pro';
+    src: url('../../public/fonts/SourseSerifPro/SourceSerifPro-Bold.woff2') format('woff2'),
+        url('../../public/fonts/SourseSerifPro/SourceSerifPro-Bold.woff') format('woff'),
+        url('../../public/fonts/SourseSerifPro/SourceSerifPro-Bold.svg#SourceSerifPro-Bold') format('svg');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Source Serif Pro';
+    src: url('../../public/fonts/SourseSerifPro/SourceSerifPro-Semibold.woff2') format('woff2'),
+        url('../../public/fonts/SourseSerifPro/SourceSerifPro-Semibold.woff') format('woff'),
+        url('../../public/fonts/SourseSerifPro/SourceSerifPro-Semibold.svg#SourceSerifPro-Semibold') format('svg');
+    font-weight: 600;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Source Serif Pro';
+    src: url('../../public/fonts/SourseSerifPro/SourceSerifPro-LightIt.woff2') format('woff2'),
+        url('../../public/fonts/SourseSerifPro/SourceSerifPro-LightIt.woff') format('woff'),
+        url('../../public/fonts/SourseSerifPro/SourceSerifPro-LightIt.svg#SourceSerifPro-LightIt') format('svg');
+    font-weight: 300;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Source Serif Pro';
+    src: url('../../public/fonts/SourseSerifPro/SourceSerifPro-SemiboldIt.woff2') format('woff2'),
+        url('../../public/fonts/SourseSerifPro/SourceSerifPro-SemiboldIt.woff') format('woff'),
+        url('../../public/fonts/SourseSerifPro/SourceSerifPro-SemiboldIt.svg#SourceSerifPro-SemiboldIt') format('svg');
+    font-weight: 600;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Source Serif Pro';
+    src: url('../../public/fonts/SourseSerifPro/SourceSerifPro-It.woff2') format('woff2'),
+        url('../../public/fonts/SourseSerifPro/SourceSerifPro-It.woff') format('woff'),
+        url('../../public/fonts/SourseSerifPro/SourceSerifPro-It.svg#SourceSerifPro-It') format('svg');
+    font-weight: normal;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Source Serif Pro';
+    src: url('../../public/fonts/SourseSerifPro/SourceSerifPro-Light.woff2') format('woff2'),
+        url('../../public/fonts/SourseSerifPro/SourceSerifPro-Light.woff') format('woff'),
+        url('../../public/fonts/SourseSerifPro/SourceSerifPro-Light.svg#SourceSerifPro-Light') format('svg');
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Source Serif Pro';
+    src: url('../../public/fonts/SourseSerifPro/SourceSerifPro-Regular.woff2') format('woff2'),
+        url('../../public/fonts/SourseSerifPro/SourceSerifPro-Regular.woff') format('woff'),
+        url('../../public/fonts/SourseSerifPro/SourceSerifPro-Regular.svg#SourceSerifPro-Regular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+
+
+
+/** Souse Sans Pro **/
+@font-face {
+    font-family: 'Source Sans Pro';
+    src: url('../../public/fonts/SourseSansPro/SourceSansPro-BlackIt.woff2') format('woff2'),
+        url('../../public/fonts/SourseSansPro/SourceSansPro-BlackIt.woff') format('woff'),
+        url('../../public/fonts/SourseSansPro/SourceSansPro-BlackIt.svg#SourceSansPro-BlackIt') format('svg');
+    font-weight: 900;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Source Sans Pro';
+    src: url('../../public/fonts/SourseSansPro/SourceSansPro-Black.woff2') format('woff2'),
+        url('../../public/fonts/SourseSansPro/SourceSansPro-Black.woff') format('woff'),
+        url('../../public/fonts/SourseSansPro/SourceSansPro-Black.svg#SourceSansPro-Black') format('svg');
+    font-weight: 900;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Source Sans Pro';
+    src: url('../../public/fonts/SourseSansPro/SourceSansPro-ExtraLight.woff2') format('woff2'),
+        url('../../public/fonts/SourseSansPro/SourceSansPro-ExtraLight.woff') format('woff'),
+        url('../../public/fonts/SourseSansPro/SourceSansPro-ExtraLight.svg#SourceSansPro-ExtraLight') format('svg');
+    font-weight: 200;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Source Sans Pro';
+    src: url('../../public/fonts/SourseSansPro/SourceSansPro-ExtraLightIt.woff2') format('woff2'),
+        url('../../public/fonts/SourseSansPro/SourceSansPro-ExtraLightIt.woff') format('woff'),
+        url('../../public/fonts/SourseSansPro/SourceSansPro-ExtraLightIt.svg#SourceSansPro-ExtraLightIt') format('svg');
+    font-weight: 200;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Source Sans Pro';
+    src: url('../../public/fonts/SourseSansPro/SourceSansPro-BoldIt.woff2') format('woff2'),
+        url('../../public/fonts/SourseSansPro/SourceSansPro-BoldIt.woff') format('woff'),
+        url('../../public/fonts/SourseSansPro/SourceSansPro-BoldIt.svg#SourceSansPro-BoldIt') format('svg');
+    font-weight: bold;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Source Sans Pro';
+    src: url('../../public/fonts/SourseSansPro/SourceSansPro-Bold.woff2') format('woff2'),
+        url('../../public/fonts/SourseSansPro/SourceSansPro-Bold.woff') format('woff'),
+        url('../../public/fonts/SourseSansPro/SourceSansPro-Bold.svg#SourceSansPro-Bold') format('svg');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Source Sans Pro';
+    src: url('../../public/fonts/SourseSansPro/SourceSansPro-SemiboldIt.woff2') format('woff2'),
+        url('../../public/fonts/SourseSansPro/SourceSansPro-SemiboldIt.woff') format('woff'),
+        url('../../public/fonts/SourseSansPro/SourceSansPro-SemiboldIt.svg#SourceSansPro-SemiboldIt') format('svg');
+    font-weight: 600;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Source Sans Pro';
+    src: url('../../public/fonts/SourseSansPro/SourceSansPro-Light.woff2') format('woff2'),
+        url('../../public/fonts/SourseSansPro/SourceSansPro-Light.woff') format('woff'),
+        url('../../public/fonts/SourseSansPro/SourceSansPro-Light.svg#SourceSansPro-Light') format('svg');
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Source Sans Pro';
+    src: url('../../public/fonts/SourseSansPro/SourceSansPro-LightIt.woff2') format('woff2'),
+        url('../../public/fonts/SourseSansPro/SourceSansPro-LightIt.woff') format('woff'),
+        url('../../public/fonts/SourseSansPro/SourceSansPro-LightIt.svg#SourceSansPro-LightIt') format('svg');
+    font-weight: 300;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Source Sans Pro';
+    src: url('../../public/fonts/SourseSansPro/SourceSansPro-Semibold.woff2') format('woff2'),
+        url('../../public/fonts/SourseSansPro/SourceSansPro-Semibold.woff') format('woff'),
+        url('../../public/fonts/SourseSansPro/SourceSansPro-Semibold.svg#SourceSansPro-Semibold') format('svg');
+    font-weight: 600;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Source Sans Pro';
+    src: url('../../public/fonts/SourseSansPro/SourceSansPro-It.woff2') format('woff2'),
+        url('../../public/fonts/SourseSansPro/SourceSansPro-It.woff') format('woff'),
+        url('../../public/fonts/SourseSansPro/SourceSansPro-It.svg#SourceSansPro-It') format('svg');
+    font-weight: normal;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Source Sans Pro';
+    src: url('../../public/fonts/SourseSansPro/SourceSansPro-Regular.woff2') format('woff2'),
+        url('../../public/fonts/SourseSansPro/SourceSansPro-Regular.woff') format('woff'),
+        url('../../public/fonts/SourseSansPro/SourceSansPro-Regular.svg#SourceSansPro-Regular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+
+

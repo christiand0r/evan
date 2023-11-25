@@ -1,0 +1,67 @@
+.bannerVideo {
+    position: relative;
+}
+
+.bannerVideo video {
+    max-height: 560px;
+    object-fit: cover;
+}
+
+.bannerVideo h1 {
+    position: absolute;
+    top: 25%;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.bannerVideo .infoBanner h1 {
+    color: var(--color-10);
+    font-family: var(--primary-font);
+}
+
+.bannerVideo .infoBanner .buttonBanner {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translate(-50%, 30%);
+}
+
+.bannerVideo .infoBanner .btnToggleVolumen {
+    position: absolute;
+    color: var(--color-09);
+    text-align: right;
+    bottom: 75px;
+    width: 100%;
+    max-width: 1320px;
+    padding-right: calc(var(--bs-gutter-x) * .5);
+    padding-left: calc(var(--bs-gutter-x) * .5);
+    font-size: 20px;
+    color: var(--color-09);
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    vertical-align: middle;
+    gap: 5px;
+    cursor: pointer;
+}
+
+.bannerVideo .infoBanner .btnToggleVolumen i {
+    font-size: 2rem;
+}
+
+@media screen and (max-width: 768px) {
+    .bannerVideo video {
+        min-height: 525px;
+    }
+
+    .bannerVideo h1 {
+        width: 100%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+    }
+
+    .bannerVideo .infoBanner .btnToggleVolumen{
+        width: auto;
+        right: 0;
+    }
+}

@@ -1,0 +1,40 @@
+.blockText h2 {
+    color: var(--color-01);
+    font-family: var(--secondary-font);
+    font-size: var(--fs-49);
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.blockText h3 {
+    font-size: var(--fs-31);
+}
+
+.blockText * + h3 {
+    margin-top: var(--space-56);
+}
+
+.blockText p{
+    color: var(--color-09);
+}
+
+@media screen and (width < 768px){
+    .blockText h2 {
+        font-size: var(--fs-33);
+    }
+
+    .blockText h3 {
+        font-size: var(--fs-25);
+    }
+
+    .blockText ul li{
+        align-items: flex-start;
+        line-height: 150%;
+        color: var(--color-09);
+    }
+
+    .blockText ul li + li{
+        margin-top: var(--space-16);
+    }
+}

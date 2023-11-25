@@ -1,0 +1,76 @@
+.Footer{
+    box-shadow: 1px 1px 8px 0px rgba(0, 0, 0, 0.25);
+}
+
+.Footer ul{
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    color: var(--color-09);
+    line-height: 30px;
+}
+
+.Footer ul a{
+    color: var(--color-09);
+}
+
+.Footer .topFooter{
+    padding: 48px 0 25px 0;
+}
+
+.Footer .innerContainer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.Footer .socialFoot {
+    display: flex;
+    flex-wrap: wrap;
+    column-gap: 24px;
+}
+
+.Footer .socialFoot p {
+    flex: 0 0 100%;
+    font-size: var(--fs-18);;
+    font-weight: 700;
+    color: var(--neutral-05);
+}
+
+.Footer .socialFoot a svg {
+    font-size: 2rem;
+    width: 30px;
+    height: 30px;
+    background: var(--color-02);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    padding: 5px;
+    border-radius: 100%;
+    transition: all .5s ease;
+}
+
+.Footer .socialFoot a:hover svg {
+    background: var(--color-01);
+    transition: all .5s ease;
+}
+
+.Footer .centerFooter{
+    padding: 24px;
+    border-top: 1px solid #a4a9ad80;
+}
+
+.Footer .bottomFooter{
+    padding: 16px 24px;
+    border-top: 1px solid #a4a9ad80;
+}
+
+.Footer .bottomFooter p,
+.Footer .bottomFooter p a{
+    font-size: var(--fs-11);
+    color: var(--neutral-05);
+    font-weight: 400;
+    line-height: 24px;
+}

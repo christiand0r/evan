@@ -1,0 +1,137 @@
+.sideColumn{
+    padding-right: var(--space-74);
+}
+
+.sidebar__content{
+    border-radius: var(--b-radius-16);
+    background-color: var(--neutral-15);
+    padding: var(--space-24);
+}
+
+.sidebar__content ul{
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    font-family: var(--primary-font);
+    font-size: var(--fs-18);
+}
+
+.sidebar__content > ul > li,
+.sidebar__content > ul > li a{
+    color: var(--color-02);
+}
+
+.sidebar__content li{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.sidebar__content li::before{
+    display: none;
+}
+
+.sidebar__content ul ul{
+    padding-left: var(--space-16) !important;
+}
+
+.sidebar__content > ul  ul > li{
+    padding: var(--space-4) 0;
+}
+
+.sidebar__content > ul  ul > li,
+.sidebar__content > ul  ul > li a{
+    color: var(--color-09);
+}
+
+.blockText h2,
+.groupContent h2 {
+    color: var(--color-01);
+    font-family: var(--secondary-font);
+    font-size: var(--fs-49);
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.blockText h3,
+.groupContent h3 {
+    font-size: var(--fs-31);
+}
+
+.blockText p{
+    color: var(--color-09);
+}
+
+.blockText ul li{
+    align-items: flex-start;
+    line-height: 150%;
+    color: var(--color-09);
+}
+
+.blockText ul li + li{
+    margin-top: var(--space-16);
+}
+
+.subitems_navigations{
+    margin-top: var(--space-48);
+}
+
+.subItem + .subItem,
+.groupContent + .groupContent{
+    margin-top: var(--space-48);
+}
+
+.Dropdown{
+    margin-bottom: var(--space-56);
+}
+
+.Dropdown,
+.Dropdown button{
+    width: 100%;
+    border-radius: 0;
+}
+
+.Dropdown button{
+    height: 54px;
+    display: flex;
+    padding: var(--space-16) var(--space-16) var(--space-8) var(--space-16);
+    flex-direction: row;
+    align-items: center;
+    background: var(--neutral-15);
+    box-shadow: var(--shadow-strong02);
+    color: var(--color-09);
+    border: none;
+    width: 100%;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.Dropdown button[aria-expanded="true"]{
+    background: var(--neutral-15);
+    color: var(--color-09);
+    box-shadow: none;
+}
+
+.Dropdown button[aria-expanded="true"] i{
+    transform: rotate(180deg);
+    transition: all .5s ease-in-out;
+}
+
+.Dropdown button[aria-expanded="false"] i{
+    transform: rotate(0deg);
+    transition: all .5s ease-in-out;
+}
+
+.Dropdown button::after{
+    display: none;
+}
+
+.DropdownToggle{
+    width: 100%;
+    border: none;
+    background: var(--neutral-15);
+    top: -2px !important;
+    border-radius: 0;
+    box-shadow: 0px 6px 6px 0px rgba(0, 0, 0, 0.25);
+}

@@ -1,0 +1,309 @@
+.Header {
+    box-shadow: var(--shadow-strong02);
+}
+
+.Header .HeaderMain .InnerContainer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 8px 0;
+}
+
+.Header .HeaderRight nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.Header .HeaderRight nav>ul {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    list-style: none;
+    gap: 16px;
+}
+
+.Header .HeaderRight nav ul li a,
+.Header .HeaderRight nav ul li button:not(.evanhub-btn) {
+    color: var(--color-09);
+    font-size: var(--fs-18);
+    margin: 0;
+    padding: 0;
+}
+
+.Header .HeaderRight nav ul li button.evanhub-btn {
+    border: inherit;
+    background: inherit;
+}
+
+.Header .HeaderRight nav ul li a i,
+.Header .HeaderRight nav ul li button i {
+    font-size: 0.75rem;
+}
+
+.Header .HeaderRight nav>ul li a::after,
+.Header .HeaderRight nav>ul li button::after {
+    content: '';
+    width: 100%;
+    height: 4px;
+    background: var(--gradient-03);
+    display: block;
+    position: absolute;
+    bottom: calc(-100% + 10px);
+    transform: scaleX(0);
+    transform-origin: left;
+    opacity: 0;
+    transition: all .5s linear;
+}
+
+.Header .HeaderRight nav .Submenu li a::after,
+.Header .HeaderRight nav .Submenu li button::after {
+    position: relative;
+}
+
+.Header .HeaderRight nav>ul li:hover>a,
+.Header .HeaderRight nav>ul li a:hover,
+.Header .HeaderRight nav>ul li:hover>button,
+.Header .HeaderRight nav>ul li button:hover {
+    text-decoration: none !important;
+}
+
+.Header .HeaderRight nav>ul li:hover>a::after,
+.Header .HeaderRight nav>ul li.Show>a::after,
+.Header .HeaderRight nav>ul li:hover>button::after,
+.Header .HeaderRight nav>ul li.Show>button::after {
+    transform: scaleX(1);
+    transform-origin: left;
+    opacity: 1;
+    transition: all .5s linear;
+}
+
+.Header .HeaderRight nav ul li {
+    position: relative;
+}
+
+.Header .HeaderRight nav .Submenu {
+    position: absolute;
+    background: white;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    z-index: 9;
+    padding: 32px;
+    gap: 16px;
+    border-radius: 0 0 8px 8px;
+    font-weight: normal;
+    top: calc(100% - 5px);
+    left: 50%;
+    min-width: 220px;
+    transform-origin: top;
+    transform: translate(-50%, 22px) scale(0);
+    box-shadow: var(--shadow-strong01);
+    transition: all .5s ease;
+}
+
+.Header .HeaderRight nav>ul li.Show .Submenu {
+    transform: translate(-50%, 22px) scale(1);
+    transition: all .5s ease;
+}
+
+/** Header TOP **/
+.HeaderTop {
+    background-color: var(--neutral-13);
+    padding: 8px 0;
+}
+
+.HeaderTop .innerContainer {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.HeaderTop a {
+    color: var(--color-02);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.HeaderTop a i {
+    font-size: 1.2rem;
+}
+
+.hamburgerMenu {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+}
+
+.hamburgerMenuLine {
+    background-color: var(--color-02);
+    height: 3px;
+    width: 25px;
+    display: block;
+    border-radius: 5px;
+}
+
+.panel_menu_header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.panel_menu_header::after {
+    content: '';
+    width: 100%;
+    height: 2px;
+    background: var(--gradient-03);
+    display: block;
+    margin-top: var(--space-8);
+}
+
+
+.closePanelIcon {
+    width: 18px;
+    height: 18px;
+    position: relative;
+    cursor: pointer;
+}
+
+.line {
+    position: absolute;
+    height: 3px;
+    width: 100%;
+    background-color: var(--color-02);
+    transform-origin: center;
+    border-radius: var(--b-radius-8);
+    top: var(--space-8);
+}
+
+.line:nth-child(1) {
+    transform: rotate(45deg);
+}
+
+.line:nth-child(2) {
+    transform: rotate(-45deg);
+}
+
+.panel_menu_body{
+    height: 100%;
+    width: 100%;
+}
+
+@keyframes slideDown {
+    0%{
+        opacity: 0;
+        display: none;
+    } 
+    100%{
+        opacity: 1;
+        display: block;
+    }
+}
+
+@keyframes slideUp {
+    0%{
+        opacity: 1;
+        display: block;
+    } 
+    100%{
+        opacity: 0;
+        display: none;
+    }
+}
+
+@media screen and (width <= 991px){
+    .extraMenu{
+        display: flex !important;
+        gap: var(--space-16);
+    }
+
+    .panel_menu_body .Menu{
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        position: relative;
+        max-height:calc(100vh - 265px);
+        margin-bottom: 15px;
+        overflow: scroll;
+    }
+    
+    .panel_menu_body .Menu > li:nth-last-child(-n+2) {
+        display: none;
+    }
+    
+    .panel_menu_body > ul > li{
+        padding: var(--space-16) var(--space-8);
+        border-bottom: 1px solid rgba(46, 60, 113, 0.15);
+    }
+    
+    .extraMenu{
+        padding: 0;
+        margin: 0;
+        flex-direction: column-reverse;
+        list-style: none;
+        display: none;
+    }
+    
+    .extraMenu > li{
+        border-bottom: none !important;
+        padding: 0 !important;
+    }
+    
+    .extraMenu > li  a{
+        width: 100%;
+        max-width: 100%;
+    }
+    
+    .panel_menu_body > ul > li:last-child{
+        bottom: 70px;
+    }
+    
+    .panel_menu_body > ul > li{
+        padding: var(--space-16) var(--space-8);
+        border-bottom: 1px solid rgba(46, 60, 113, 0.15);
+    }
+    
+    .buttonNav,
+    .panel_menu_body li:not(:nth-last-child(-n+2)) a{
+        font-size: var(--fs-18);
+        border: none;
+        background: none;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0;
+        color: var(--color-09);
+    }
+    
+    .buttonNav + ul{
+        padding: 16px 16px 0;
+        opacity: 0;
+        display: none;
+        height: auto;
+        list-style: none;
+        animation: slideUp .5s forwards;
+        transition: all .5s ease-in-out;
+    }
+    
+    .buttonNav + ul li{
+        padding: var(--space-8);
+    }
+    
+    .activeAccordion + ul{
+        height: auto;
+        display: block;
+        animation: slideDown .5s forwards;
+        transition: all .5s ease-in-out;
+    }
+}

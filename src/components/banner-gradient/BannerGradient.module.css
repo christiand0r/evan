@@ -1,0 +1,17 @@
+.BannerGradient{
+    padding: var(--space-48) 0;
+}
+
+.InnerContainer{
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+@media screen and (width <= 768px) {
+    .BannerGradient h2{
+        font-size: var(--fs-27);
+    }
+}

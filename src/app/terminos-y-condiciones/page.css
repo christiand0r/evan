@@ -1,0 +1,6 @@
+
+@media screen and (width < 767px) {
+    .banner_section{
+        margin-bottom: 0;
+    }
+}

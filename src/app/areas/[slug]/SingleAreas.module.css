@@ -1,0 +1,31 @@
+.evanHubContent h2 {
+    color: var(--color-01);
+    text-align: center;
+    font-family: var(--secondary-font);
+    font-size: var(--fs-49);
+    margin-bottom: var(--space-24);
+}
+
+.primaryContent img {
+    width: 100%;
+    margin-top: var(--space-96);
+}
+
+.auxContent img {
+    max-width: 900px;
+    margin: var(--space-48) auto;
+    display: block;
+    width: 100%;
+}
+
+.auxContent h2 {
+    max-width: 85%;
+    margin: 0 auto;
+}
+
+.relatedArea{
+    background-color: var(--neutral-15);
+    padding: var(--space-96) 0;
+}
+
+

@@ -1,0 +1,35 @@
+.split_row{
+    border-top: 1px solid var(--color-01);
+}
+
+.split_row .separator_title{
+    display: none;
+}
+
+.split_row h2{
+    font-size: var(--fs-39);
+}
+
+.split_row p{
+    font-size: var(--fs-23);
+}
+
+.split_row .row > div[class*="col-"]:last-child{
+    margin-top: var(--space-48);
+}
+
+@media screen and (width < 768px){
+    
+    .split_row h2{
+        font-size: var(--fs-24);
+    }
+
+    .split_row .row > div[class*="col-"]:last-child{
+        margin-top: var(--space-24);
+    }
+
+    .split_row p{
+        font-size: var(--fs-18);
+    }
+
+}
