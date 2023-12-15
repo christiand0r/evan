@@ -1,0 +1,45 @@
+.graphic_title h3{
+    color: var(--color-02);
+    font-size: var(--fs-49);
+    font-weight: 600;
+    font-family: var(--primary-font);
+    margin-bottom: var(--space-24);
+}
+
+.graphic_title h2{
+    font-size: var(--fs-39);
+    margin-bottom: 0;
+}
+
+
+.InnerGraphic{
+    display: flex;
+    gap: 72px;
+    align-items: flex-end;
+    margin-bottom: var(--space-24);
+}
+
+.graphic_title::after{
+    content:'';
+    width: 100%;
+    height: 10px;
+    display: block;
+    background: var(--gradient-04);
+}
+
+@media screen and (width < 768px){
+    .graphic_title{
+        padding: 0 15px;
+    }
+
+    .graphic_title h2{
+        font-size: var(--fs-24);
+        text-align: center;
+    }
+
+    .InnerGraphic{
+        flex-direction: column;
+        align-items: center;
+        gap: 32px;
+    }
+}

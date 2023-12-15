@@ -5,9 +5,9 @@ import styles from './Banner.module.css'
 import Breadcrumb from "../Breadcrumbs";
 
 const Banner = (props) => {
-    const { src, src_sm, title, description_banner, image, buttonProps, customName } = props;
+    const { src, src_sm, title, description_banner, image, buttonProps, customName, customClass } = props;
     return (
-        <section className={`${styles.Banner} banner_section mb-xxl`}>
+        <section className={`${styles.Banner} banner_section mb-xxl ${customClass}`}>
             <Breadcrumb customName={customName}/>
 
             {src && (
@@ -37,6 +37,8 @@ const Banner = (props) => {
                     </div>
                 )}
             </div>
+
+            {buttonProps && <Button {...buttonProps} />}
         </section>
     );
 }

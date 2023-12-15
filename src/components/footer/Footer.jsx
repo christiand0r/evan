@@ -1,9 +1,8 @@
 
 import styles from './Footer.module.css'
-
+import Logo from '../../../public/evanhub_logo_footer.svg';
 import Link from 'next/link';
-
-import 'bootstrap/dist/css/bootstrap.min.css';
+import Image from 'next/image';
 
 import { getDataMenuFoot } from '@/app/Apis';
 
@@ -47,7 +46,7 @@ const Footer = async () => {
                         <div className={styles.innerContainer}>
 
                             <Link href='/' aria-label='Logo Evanhub'>
-                                <img src='/evanhub-logo__footer.png' alt="Logo Footer" />
+                                <Image src={Logo} alt="Logo Footer" width={225} height={79} />
                             </Link>
 
                         </div>
@@ -56,26 +55,26 @@ const Footer = async () => {
                 <div className={styles.centerFooter}>
                     <div className='container'>
                         <div className='row'>
-                            <div className='col-md-3 col-sm-12'>
-                                <h4 className='fw-bold body-large'>{titleFoot1}</h4>
+                            <div className={`${styles.Column} col-md-3 col-sm-12`}>
+                                <p className='body-large mb-0'>{titleFoot1}</p>
                                 <ul className='menu'>
                                     {renderMenuItems(menuFoot1)}
                                 </ul>
                             </div>
-                            <div className='col-md-3 col-sm-12'>
-                                <h4 className='fw-bold body-large'>{titleFoot2}</h4>
+                            <div className={`${styles.Column} col-md-3 col-sm-12`}>
+                                <p className='body-large mb-0'>{titleFoot2}</p>
                                 <ul className='menu'>
                                     {renderMenuItems(menuFoot2)}
                                 </ul>
                             </div>
-                            <div className='col-md-3 col-sm-12'>
-                                <h4 className='fw-bold body-large'>{titleFoot3}</h4>
+                            <div className={`${styles.Column} col-md-3 col-sm-12`}>
+                                <p className='body-large mb-0'>{titleFoot3}</p>
                                 <ul className='menu'>
                                     {renderMenuItems(menuFoot3)}
                                 </ul>
                             </div>
-                            <div className='col-md-3 col-sm-12'>
-                            <h4 className='fw-bold body-large'>{titleFoot4}</h4>
+                            <div className={`${styles.Column} col-md-3 col-sm-12`}>
+                            <p className='body-large mb-0'>{titleFoot4}</p>
                                 <ul className='menu'>
                                     {renderMenuItems(menuFoot4)}
                                 </ul>

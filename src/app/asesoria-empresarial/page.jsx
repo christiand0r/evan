@@ -2,31 +2,48 @@ import Banner from "@/components/banner/Banner";
 import SplitRow from "@/components/split-row/SliptRow";
 import FormGeneral from "@/components/form/FormGeneral";
 
-import './page.css';
+import { getDatabusinessConsultingPage } from "../Apis";
+import { parseBannerData, parseSplitRowData } from "../DataParser";
 
-const businessConsulting = () => {
+import styles from './page.css';
+
+const CMS_HOST_URL = process.env.CMS_HOST;
+
+const businessConsulting = async () => {
+
+    const dataResponse = await getDatabusinessConsultingPage();
+    const data = dataResponse.data.attributes;
+
+    const banner = parseBannerData(data.banner);
+    const splitRow = parseSplitRowData(data.split_row);
+    const form = data.form;
+
     return (
         <>
             <Banner
-                src="https://evanhub.somosforma.dev/_next/image?url=https%3A%2F%2Fevanhub-cms.somosforma.dev%2Fuploads%2Fpoliticas_de_privacidad_lg_6b97f77bbc.jpg&w=3840&q=75"
-                src_sm="https://evanhub.somosforma.dev/_next/image?url=https%3A%2F%2Fevanhub-cms.somosforma.dev%2Fuploads%2Fpoliticas_de_privacidad_lg_6b97f77bbc.jpg&w=3840&q=75"
-                title="Asesoría Empresarial"
-                description_banner="Un personal capacitado y saludable es sinónimo de una empresa eficiente"
+                src={CMS_HOST_URL + banner.urlBannerLg}
+                src_sm={CMS_HOST_URL + banner.urlBannerSm}
+                title={banner.title_banner}
+                description_banner={banner.description_banner}
             />
 
             <div className="container">
                 <SplitRow
-                    image="https://evanhub.somosforma.dev/_next/image?url=https%3A%2F%2Fevanhub-cms.somosforma.dev%2Fuploads%2Fasesoria_empresarial_ab2b6a96ed.png&w=1920&q=75"
-                    title_section="El rendimiento laboral y la salud mental van de la mano"
-                    description="Para lograr los objetivos que tu empresa se propone, ofrecemos servicios de evaluación de alta calidad. Según destacó el World Economic Forum en 2019 “las intervenciones en salud mental en el lugar de trabajo pueden retornar hasta cuatro dólares por cada dólar invertido, gracias a una mejor productividad y menor ausentismo”. La promoción por la salud mental también puede ser parte de tu cultura organizacional. Contáctanos para conocer las necesidades de tu empresa, organización o entidad."
+                    image={CMS_HOST_URL + splitRow.urlImage}
+                    title_section={splitRow.title_section}
+                    description={splitRow.description}
+                    customClass="split_row team_split_row"
                 />
-                <div className="container-s mb-xxl">
-                    <FormGeneral
-                        title="¿Necesitas asesoría?"
-                        subtitle="Completa nuestro formulario para saber más sobre nuestros servicios y beneficios."
-                        subject="Asesoría Empresarial"
-                    />
-                </div>
+                {form.form_activation && (
+                    <div className="container-s mb-xxl">
+                        <FormGeneral
+                            title={form.title}
+                            subtitle={form.descripcion}
+                            subject={form.subject}
+                        />
+                    </div>
+                )}
+
             </div>
         </>
     );

@@ -59,10 +59,18 @@
     height: 100%;
 }
 
-.CardEvanhub .InfoCard h6{
+.CardEvanhub .InfoCard h2{
     font-size: var(--fs-14);
     font-weight: 400;
     color: var(--color-09);
+}
+
+.CardEvanhub .InfoCard h3{
+    font-size: var(--fs-25);
+    font-weight: 600;
+    line-height: 127.4%;
+    margin-bottom: var(--space-24);
+
 }
 
 .CardEvanhub:hover .InfoCard{
@@ -76,7 +84,7 @@
     border: 1px solid var(--color-10);
 }
 
-.CardEvanhub:hover .InfoCard h6{
+.CardEvanhub:hover .InfoCard h2{
     color: var(--color-10);
     transition: all .4s ease;
 }

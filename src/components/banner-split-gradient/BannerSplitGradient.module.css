@@ -1,0 +1,105 @@
+.Banner {
+    position: relative;
+    background: var(--gradient-04);
+    background-size: 52vw;
+}
+
+.Breadcrumb a,
+.Breadcrumb span {
+    color: white !important;
+}
+
+.infoBanner {
+    padding: 48px 48px 48px 0;
+}
+
+.infoBanner h1 {
+    color: white;
+    margin-bottom: var(--space-24);
+    font-size: 49px;
+    font-family: var(--primary-font);
+    font-weight: 600;
+}
+
+.infoBanner p {
+    color: var(--color-09);
+    margin-bottom: var(--space-24);
+    font-size: var(--fs-24);
+    font-weight: 400;
+}
+
+.innerInfoBanner {
+    max-width: 100%;
+    margin-top: 96px;
+    margin-bottom: 96px;
+}
+
+.innerInfoBanner p {
+    color: white;
+    font-size: var(--fs-24);
+}
+
+.innerImgBanner {
+    text-align: center;
+}
+
+.imgBanner {
+    position: absolute;
+    right: -15px;
+    height: 100%;
+    top: 0;
+}
+
+.imgBanner img {
+    height: 100% !important;
+    object-fit: cover;
+}
+
+@media screen and (width < 768px) {
+    .Banner{
+        background: var(--color-02);
+    }
+    .Banner .container {
+        padding: 0;
+    }
+
+    .Banner .row {
+        flex-direction: column-reverse;
+    }
+
+    .innerInfoBanner {
+        max-width: 100%;
+        margin-top: 0;
+        margin-bottom: 0;
+    }
+
+    .imgBanner{
+        position: relative;
+        right: 0;
+    }
+
+    .imgBanner img{
+        min-height: 215px !important;
+        max-height: 215px;
+        object-fit: cover;
+    }
+
+    .infoBanner{
+        padding: var(--space-32) var(--space-32);
+    }
+
+    .infoBanner h1{
+        font-size: var(--fs-31);
+        margin-bottom: var(--space-16);
+    }
+
+    .infoBanner p{
+        font-size: var(--fs-16);
+    }
+
+    .infoBanner a{
+        width: 100%;
+        max-width: 100%;
+        font-size: var(--fs-18);
+    }
+}

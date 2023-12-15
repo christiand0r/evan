@@ -43,6 +43,7 @@ const pageEquipo = async () => {
                     hostCms={CMS_HOST_URL}
                 />
                 <SplitRow
+                    customClass="equipo_split_row"
                     image={CMS_HOST_URL + splitRow.urlImage}
                     title={splitRow.title}
                     description={splitRow.description}

@@ -3,7 +3,7 @@
 }
 .CardIcon{
     text-align: center;
-    padding: var(--space-24) !important;
+    padding: var(--space-48) var(--space-24) var(--space-24) var(--space-24) !important;
     min-height: 365px;
     align-items: center;
     justify-content: flex-start;
@@ -18,7 +18,10 @@
 }
 
 .CardIcon img{
-    max-height: 52px;
+    max-height: 70px;
+    margin-bottom: var(--space-24);
+    max-width: 70px;
+    min-height: 70px;
 }
 
 .CardIcon p{

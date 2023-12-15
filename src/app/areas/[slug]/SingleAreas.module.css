@@ -3,12 +3,19 @@
     text-align: center;
     font-family: var(--secondary-font);
     font-size: var(--fs-49);
-    margin-bottom: var(--space-24);
+    margin-bottom: var(--space-48);
+    max-width: 1005px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .primaryContent img {
     width: 100%;
     margin-top: var(--space-96);
+}
+
+.primaryContent p{
+    text-align: justify;
 }
 
 .auxContent img {
@@ -28,4 +35,93 @@
     padding: var(--space-96) 0;
 }
 
+.splitingRow{
+    border: 1px solid var(--lneas-lnea-3, rgba(46, 60, 113, 0.15));
+    margin-bottom: calc(96px * 2);
+}
 
+.splitingRow > div > div:first-child{
+    padding: var(--space-48) 0;
+}
+
+.splitingRow h2{
+    font-size: var(--fs-31) !important;
+}
+
+.splitingRow ul{
+    font-size: var(--fs-18);
+    line-height: 150%;
+}
+
+.quote_area > div:last-child::after{
+    content:'';
+    background: var(--gradient-07);
+    height: 8px;
+    position: relative;
+    right: 0;
+    width: calc(100% + 40%);
+    left: -40%;
+    display: block;
+}
+
+
+
+@media screen and (width < 768px){
+
+    .evanHubContent h2 {
+        font-size: var(--fs-28);
+    }
+
+    .evanHubContent ul{
+        font-size: var(--fs-15);
+        line-height: 150%;
+    }
+
+    .evanHubContent ul li {
+        align-items: flex-start;
+        gap: var(--space-8);
+    }
+
+    .evanHubContent ul li::before{
+        margin: 0;
+        font-size: 20px;
+    }
+
+    .evanHubContent ul li + li{
+        margin-top: var(--space-8);
+    }
+
+    .classBanner > div:last-child a{
+        position: absolute;
+        bottom: -100%;
+        left: 0;
+        right: 0;
+        margin: 0 auto;
+    }
+
+    .SplitingRow{
+        gap: 0;
+    }
+
+    .splitingRow > div > div:first-child {
+        padding: var(--space-24) var(--space-16) var(--space-48);
+    }
+
+    .splitingRow h2{
+        font-size: var(--fs-20) !important;
+    }
+
+    .splitingRow ul{
+        font-size: var(--fs-15);
+        line-height: 150%;
+    }
+
+    .splitingRow ul li{
+        gap: var(--space-8);
+    }
+
+    .splitingRow ul li::before {
+        margin-right: 0;
+        font-size: 1.2rem;
+    }
+}

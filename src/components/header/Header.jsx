@@ -1,19 +1,21 @@
-import 'bootstrap/dist/css/bootstrap.min.css';
-import 'bootstrap-icons/font/bootstrap-icons.css';
 import HamburgerMenu from './HamburgerMenu';
 import ClosePanel from './ClosePanel';
 
 import styles from '@/components/header/Header.module.css'
 
 import Link from 'next/link';
+import Image from 'next/image';
 
 import Menu from './Menu';
 import HeaderTop from './TopHeader';
 
-const Header = () => {
+import Logo from '../../../public/logo-evanhub.svg';
+
+const Header = ({ isSticky }) => {
+
     return (
         <>
-            <header className={styles.Header}>
+            <header className={`${styles.Header} ${isSticky ? styles.sticky : ''}`}>
                 <div className='fullwidth'>
                     <HeaderTop />
                     <div className={styles.HeaderMain}>
@@ -22,16 +24,16 @@ const Header = () => {
                                 <div className={styles.HeaderLeft}>
                                     <div className="logo-container">
                                         <Link href='/' aria-label='Logo Evanhub'>
-                                            <img src="/evanhub-logo.png" alt="Logo Evanhub" />
+                                            <Image src={Logo} width={122} height={43} alt="Logo Evanhub" />
                                         </Link>
                                     </div>
                                 </div>
                                 <div className={styles.HeaderRight}>
-                                    <nav className='d-none d-sm-none d-md-none d-lg-block'>
+                                    <nav className={styles.menuDesktop}>
                                         <Menu />
                                     </nav>
 
-                                    <div className='d-block d-sm-block d-md-block d-lg-none'>
+                                    <div className={styles.menuMobile}>
                                         <HamburgerMenu />
                                     </div>
                                 </div>
@@ -41,8 +43,8 @@ const Header = () => {
                 </div>
             </header>
 
-            <div className='d-block d-sm-block d-md-block d-lg-none'>
-                <div className="panel_menu">
+            <div className={styles.menuMobile}>
+                <div className={`${styles.panelMenu} panel_menu`}>
                     <div className={styles.panel_menu_header}>
                         <img src="/evanhub-logo.png" alt="Logo Evanhub" />
                         <ClosePanel />
@@ -55,5 +57,13 @@ const Header = () => {
         </>
     );
 };
+
+Header.getInitialProps = ({ req }) => {
+    const scrollPosition = req && req.headers && req.headers.scrollposition;
+    const isSticky = scrollPosition > 200;
+  
+    console.log('isSticky', isSticky);
+    return { isSticky };
+  };
 
 export default Header;

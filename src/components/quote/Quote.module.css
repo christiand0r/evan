@@ -1,0 +1,91 @@
+.quote {
+    display: flex;
+    align-items: center;
+    gap: 105px;
+}
+
+.quote i{
+    color: var(--color-03);
+    position: absolute;
+    opacity: 35%;
+    font-size: 3.5rem;
+    left: -40px;
+    top: -40px;
+}
+
+.quote__image {
+    flex: 0 0 312px;
+}
+
+.quote__image img {
+    min-height: 438px;
+}
+
+.quote__content{
+    position: relative;
+}
+
+.quote__content p {
+    color: var(--color-09);
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 150%;
+    font-family: var(--primary-font);
+    margin-bottom: var(--space-48);
+    text-align: justify;
+}
+
+.quote__content h2{
+    color: var(--color-01);
+    font-family: var(--secondary-font);
+    font-size: var(--fs-31);
+}
+
+.quote__content h2 + p{
+    font-weight: 600;
+    color: #000000;
+    font-size: var(--fs-25);
+}
+
+@media screen and (width < 768px) {
+    .quote {
+        flex-direction: column;
+        padding: 0 15px;
+        gap: 30px;
+    }
+
+    .quote i{
+        left: 0;
+    }
+
+    .quote__content{
+        padding: 0 15px;
+    }
+
+    .quote__content p{
+        font-size: var(--fs-16);
+        z-index: 9;
+        position: relative;
+    }
+
+    .quote_text{
+        margin-bottom: var(--space-32);
+    }
+
+    .quote__content h2{
+        font-size: var(--fs-20);
+        margin-bottom: 0;
+    }
+
+    .quote__content h2 + p{
+        font-size: var(--fs-19);
+    }
+
+    .quote__image img{
+        max-height: 293px;
+        min-height: auto;
+        aspect-ratio: 16/9;
+    }
+    
+}

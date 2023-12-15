@@ -24,12 +24,36 @@
 
 .formEvanhub input::placeholder,
 .formEvanhub textarea::placeholder {
-    color: var(--neutral-11);
+    color: var(--color-09);
     font-size: var(--fs-18);
+}
+
+.formEvanhub input::placeholder{
+    opacity: 0;
 }
 
 .formEvanhub label {
     margin-bottom: 5px;
+    position: absolute;
+    left: 30px;
+    pointer-events: none;
+    transition: all .22s;
+    top: 10px;
+    display: block;
+    background: white;
+}
+
+.formEvanhub input:focus + label,
+.formEvanhub input:hover + label,
+.formEvanhub input:valid + label,
+.formEvanhub input:active + label,
+.formEvanhub input:visited + label {
+    top: -9px;
+    font-size: 0.6rem;
+    transform: translateY(0);
+    left: 29px;
+    opacity: 1;
+    background: white;
 }
 
 .formEvanhub label span {
@@ -42,6 +66,10 @@
 
 .formEvanhub button {
     border: none;
+}
+
+.activeForm {
+    border: 1px solid var(--color-04);
 }
 
 .innerForm {

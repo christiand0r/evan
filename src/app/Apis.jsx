@@ -1,10 +1,11 @@
 export const CMS_HOST_URL = process.env.CMS_HOST;
+export const PUBLIC_CMS_HOST_URL = process.env.NEXT_PUBLIC_CMS_HOST_URL;
 
 //Menú principal
 export const getDataMenuPrimary = async () => {
     try {
 
-        const res = await fetch(`${CMS_HOST_URL}/api/menus/1?populate[Items][populate][0]=children`);
+        const res = await fetch(`${PUBLIC_CMS_HOST_URL}/api/menus/1?populate[Items][populate][0]=children`);
 
         if (!res.ok) {
             throw new Error('❌ Failed to fetch data menu primary');
@@ -22,9 +23,10 @@ export const getDataMenuPrimary = async () => {
 //Top menú
 export const getDataTopMenu = async () => {
 
+    //console.log('Fetching data...');
     try {
 
-        const res = await fetch(`${CMS_HOST_URL}/api/intranet`);
+        const res = await fetch(`${PUBLIC_CMS_HOST_URL}/api/intranet`);
 
         if (!res.ok) {
             throw new Error('❌ Failed to fetch data top menu');
@@ -36,6 +38,7 @@ export const getDataTopMenu = async () => {
 
     } catch (err) {
         console.error(err);
+        throw err;
     }
 
 }
@@ -73,7 +76,7 @@ export const getDataAreas = async () => {
 
     try {
 
-        const res = await fetch(`${CMS_HOST_URL}/api/areas?populate=*`);
+        const res = await fetch(`${CMS_HOST_URL}/api/areas?populate[banner][populate]=*&populate[featured_image]=*&populate[form][populate]=*&populate[steps][populate]=*&populate[splitrow][populate][split_image][populate]=*&populate[benefits][populate]=*&populate[quote][populate]=*`);
 
         if (!res.ok) {
             throw new Error('❌ Failed to fetch data areas');
@@ -108,6 +111,40 @@ export const getDataServicios = async () => {
     }
 }
 
+//Noticias
+export const getDataBlog = async ({ page = 1, category = '', tag = '' }) => {
+
+    try {
+
+        const formattedTag = tag.replace(/-/g, ' ');
+
+        const res = await fetch(`${PUBLIC_CMS_HOST_URL}/api/posts?populate=*&_sort=publishedAt&pagination[pageSize]=6&pagination[page]=${page}${category ? `&filters[categories][name][$eq]=${category}` : ''}${formattedTag ? `&filters[etiquetas][name][$eq]=${formattedTag}` : ''}`)
+
+        if (!res.ok) {
+            throw new Error(`❌ Failed to fetch data noticias page. Status: ${res.status}`);
+        }
+
+        const { data, meta } = await res.json();
+        const { pagination } = meta;
+
+        return { data, pagination };
+
+
+    } catch (err) {
+        console.error(err);
+        throw new Error('❌ Failed to fetch data noticias page. See console for details.');
+    }
+}
+
+export const getAllPosts = async () => {
+    const response = await fetch(`${PUBLIC_CMS_HOST_URL}/api/posts?populate=*`);
+    const data = await response.json();
+    return data;
+};
+
+
+
+
 /* --- PAGES --- */
 
 //Home Page
@@ -138,7 +175,7 @@ export const getDataEquipo = async () => {
         const res = await fetch(`${CMS_HOST_URL}/api/equipo?populate[banner][populate]=*&populate[block_content][populate]=*&populate[team][populate][items_team][populate]=*&populate[split_row][populate][image][populate]`);
 
         if (!res.ok) {
-            throw new Error('❌ Failed to fetch data home page');
+            throw new Error('❌ Failed to fetch data equipo page');
         }
 
         const data = await res.json();
@@ -160,7 +197,7 @@ export const getDataPrivacyPolicies = async () => {
         const res = await fetch(`${CMS_HOST_URL}/api/politica-de-privacidad?populate[banner][populate]=*&populate[main_content][populate]`);
 
         if (!res.ok) {
-            throw new Error('❌ Failed to fetch data home page');
+            throw new Error('❌ Failed to fetch data políticas de privacidad page');
         }
 
         const data = await res.json();
@@ -172,7 +209,7 @@ export const getDataPrivacyPolicies = async () => {
     }
 }
 
-//Políticas de privacidad
+//Políticas de cookies
 export const getDataCookiesPolicies = async () => {
 
     try {
@@ -180,7 +217,48 @@ export const getDataCookiesPolicies = async () => {
         const res = await fetch(`${CMS_HOST_URL}/api/politica-de-cookies?populate[banner][populate]=*&populate[main_content][populate]`);
 
         if (!res.ok) {
-            throw new Error('❌ Failed to fetch data home page');
+            throw new Error('❌ Failed to fetch data políticas de cookie page');
+        }
+
+        const data = await res.json();
+
+        return data;
+
+    } catch (err) {
+        console.error(err);
+    }
+}
+
+//Términos y condiciones page
+export const getDataTermsAndConditions = async () => {
+
+    try {
+
+        const res = await fetch(`${CMS_HOST_URL}/api/terminos-y-condiciones?populate[banner][populate]=*&populate[sidenav_group][populate]=*`);
+
+        if (!res.ok) {
+            throw new Error('❌ Failed to fetch data términos y condiciones page');
+        }
+
+        const data = await res.json();
+
+        return data;
+
+    } catch (err) {
+        console.error(err);
+    }
+}
+
+
+//Contacto Page
+export const getDataContactPage = async () => {
+
+    try {
+
+        const res = await fetch(`${CMS_HOST_URL}/api/contacto?populate[banner][populate]=*&populate[form][populate]=*`);
+
+        if (!res.ok) {
+            throw new Error('❌ Failed to fetch data contacto page');
         }
 
         const data = await res.json();
@@ -193,14 +271,14 @@ export const getDataCookiesPolicies = async () => {
 }
 
 //Términos y condiciones
-export const getDataTermsAndConditions = async () => {
+export const getDataFaqPage = async () => {
 
     try {
 
-        const res = await fetch(`${CMS_HOST_URL}/api/terminos-y-condiciones?populate[banner][populate]=*&populate[sidenav_group][populate]=*`);
+        const res = await fetch(`${CMS_HOST_URL}/api/pregunta-frecuente?populate[banner][populate]=*&populate[accordions][populate]=*&populate[banner_gradient][populate]=*`);
 
         if (!res.ok) {
-            throw new Error('❌ Failed to fetch data home page');
+            throw new Error('❌ Failed to fetch data preguntas frecuentes page');
         }
 
         const data = await res.json();
@@ -211,3 +289,54 @@ export const getDataTermsAndConditions = async () => {
         console.error(err);
     }
 }
+
+//Asesoría Empresarial
+export const getDatabusinessConsultingPage = async () => {
+
+    try {
+
+        const res = await fetch(`${CMS_HOST_URL}/api/asesoria-empresarial?populate[banner][populate]=*&populate[split_row][populate]=*&populate[form][populate]=*`);
+
+        if (!res.ok) {
+            throw new Error('❌ Failed to fetch data Asesoría empresarial page');
+        }
+
+        const data = await res.json();
+
+        return data;
+
+    } catch (err) {
+        console.error(err);
+    }
+}
+
+
+//Sobre Evanhub
+export const getAboutPage = async () => {
+
+    try {
+
+        const res = await fetch(`${CMS_HOST_URL}/api/sobre-evanhub?populate[banner][populate]=*&populate[graphic_title][populate]=*&populate[content_text][populate]=*&populate[quote][populate]=*&populate[spliting_rows][populate]=*&populate[banner_gradient][populate]=*
+        `);
+
+        if (!res.ok) {
+            throw new Error('❌ Failed to fetch data Sobre Evanhub page');
+        }
+
+        const data = await res.json();
+
+        return data;
+
+    } catch (err) {
+        console.error(err);
+    }
+}
+
+//404
+export const getNotFound = async () => {
+    const response = await fetch(`${PUBLIC_CMS_HOST_URL}/api/not-found?populate=*`);
+    const data = await response.json();
+    return data;
+};
+
+

@@ -19,7 +19,7 @@ const CMS_HOST_URL = process.env.CMS_HOST;
 
 const Home = async () => {
 
-  const dataResponse = await getDataHome()
+  const dataResponse = await getDataHome();
 
   const videoData = parseVideoData(dataResponse.data.attributes.banner_video);
   const bannerMiddleData = parseBannerMiddleData(dataResponse.data.attributes.banner_middle);
@@ -28,7 +28,7 @@ const Home = async () => {
   const splitGradientData = parseSplitGradient(dataResponse.data.attributes.split_gradient);
   const stepsData = parseInfographicSteps(dataResponse.data.attributes.steps);
 
-
+//console.log(bannerGradientData);
   return (
     <main className='main'>
       <div className='fullwidth'>
@@ -39,7 +39,8 @@ const Home = async () => {
             targetButton={videoData.targetButtonVideo} 
             typeButton={videoData.typeButtonvideo} 
         />
-        <Areas 
+        <Areas
+            title_section='Conoce nuestras áreas de especialización' 
             slideLg={4} 
             slideMd={2.3} 
             slideSm={1.3} 

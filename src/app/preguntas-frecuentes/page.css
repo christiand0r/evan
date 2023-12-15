@@ -1,0 +1,16 @@
+.banner_gradient{
+    border-radius: var(--b-radius-16);
+    margin-bottom: var(--space-96);
+}
+
+.banner_gradient h2{
+    font-size: var(--fs-39);
+    font-weight: 400;
+}
+
+@media screen and (width < 767px) {
+    .banner_gradient{
+        margin-bottom: var(--space-56);
+    }
+    
+}

@@ -7,19 +7,22 @@ const capitalizeFirstLetter = (str) => {
     return str.charAt(0).toUpperCase() + str.slice(1);
 };
 
-const Breadcrumb = (props) => {
-
-    const { customName } = props;
-
+const Breadcrumb = ({ customClass, customName }) => {
     const router = usePathname();
     const path = router.split('/').filter((x) => x);
-    const lastPath = path[path.length - 1];
+    let lastPath = path[path.length - 1];
+
+    // Si estamos en una página de paginación, tomamos 'noticias' como lastPath
+    if (path[1] === 'page' || path[1] === 'category') {
+        lastPath = path[0];
+    }
+
+    //console.log(path[1]);
+
     const separator = '/';
 
-    //console.log(router);
-
     return (
-        <div className='breadcrumbs'>
+        <div className={`breadcrumbs ${customClass}`}>
             <div className='container'>
                 <nav aria-label="Breadcrumb">
                     <ol>
@@ -28,11 +31,18 @@ const Breadcrumb = (props) => {
                                 <span><i className="bi bi-house"></i></span>
                             </Link>
                         </li>
+
+                        {path[0] === 'noticias' && path[1] != undefined && (
+                            <li key="news-list">
+                                <span className='separator'>{separator}</span>
+                                <span>Noticias</span>
+                            </li>
+                        )}
+
                         <li key={lastPath + `-list`}>
                             <span className='separator'>{separator}</span>
                             <span>{customName ? customName : capitalizeFirstLetter(lastPath).replace(/-/g, ' ')}</span>
                         </li>
-
                     </ol>
                 </nav>
             </div>

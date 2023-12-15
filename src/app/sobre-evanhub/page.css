@@ -1,0 +1,12 @@
+.banner_about h1,
+.banner_about p{
+    font-size: var(--fs-31);
+}
+
+
+@media screen and (width < 768px) {
+    .banner_about p {
+        font-size: var(--fs-16);
+    }
+    
+}

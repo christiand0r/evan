@@ -1,0 +1,189 @@
+.GridPost {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    column-gap: 32px;
+    row-gap: 48px;
+    margin-bottom: var(--space-96);
+}
+
+.Pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: var(--space-96);
+}
+
+.PageNumber {
+    width: 30px;
+    height: 30px;
+    border-radius: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--color-09);
+    border: none;
+    background-color: white;
+    text-decoration: none !important;
+    font-family: var(--primary-font);
+    transition: color 0.3s ease-in-out, background-color 0.3s ease-in-out, border-color 0.3s ease-in-out;
+}
+
+.PageNumber:not(:first-child):not(:last-child) {
+    border-color: transparent;
+}
+
+.PageNumber:hover {
+    color: var(--color-02);
+    text-decoration: underline !important;
+}
+
+.PageCurrent {
+    color: var(--color-02);
+    text-decoration: underline !important;
+    transition: color 0.3s ease-in-out, background-color 0.3s ease-in-out, border-color 0.3s ease-in-out;
+}
+
+.filterCategories {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid var(--color-02);
+}
+
+.filterCategory {
+    color: var(--color-01);
+    text-align: center;
+    font-size: var(--fs-18);
+    font-style: normal;
+    font-weight: 400;
+    line-height: 127.4%;
+    border-width: 1px;
+    border-style: solid;
+    border-color: var(--color-01);
+    border-radius: var(--b-radius-8);
+    padding: var(--space-8) var(--space-16);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background-color: transparent;
+    cursor: pointer;
+    text-decoration: none !important;
+    transition: color 0.5s ease-in-out, background-color 0.5s ease-in-out, border-color 0.5s ease-in-out;
+}
+
+.filterCategory:hover,
+.CategoryCurrent {
+    color: white;
+    background-color: var(--color-02);
+    border-color: var(--color-02);
+}
+
+.Loading {
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 96px 0;
+}
+
+.Loader {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    position: relative;
+    display: block;
+    animation: rotate 1s linear infinite
+}
+
+.Loader::before,
+.Loader::after {
+    content: "";
+    box-sizing: border-box;
+    position: absolute;
+    inset: 0px;
+    border-radius: 50%;
+    border: 5px solid var(--color-01);
+    animation: prixClipFix 2s linear infinite;
+}
+
+.Loader::after {
+    transform: rotate3d(90, 90, 0, 180deg);
+    border-color: var(--color-02);
+}
+
+.noResultsMessage {
+    text-align: center;
+    margin: 96px 0;
+}
+
+@keyframes rotate {
+    0% {
+        transform: rotate(0deg)
+    }
+
+    100% {
+        transform: rotate(360deg)
+    }
+}
+
+@keyframes prixClipFix {
+    0% {
+        clip-path: polygon(50% 50%, 0 0, 0 0, 0 0, 0 0, 0 0)
+    }
+
+    50% {
+        clip-path: polygon(50% 50%, 0 0, 100% 0, 100% 0, 100% 0, 100% 0)
+    }
+
+    75%,
+    100% {
+        clip-path: polygon(50% 50%, 0 0, 100% 0, 100% 100%, 100% 100%, 100% 100%)
+    }
+}
+
+@media screen and (width < 768px) {
+    .GridPost {
+        grid-template-columns: repeat(1, 1fr);
+    }
+
+    .gridPostWrap {
+        padding: 0 var(--space-15);
+    }
+
+    .blogPosts h2 {
+        padding: 0 var(--space-15);
+        font-size: var(--fs-28);
+    }
+
+    .gridBlogPosts {
+        padding: 0 var(--space-15);
+    }
+
+    .filterCategories {
+        overflow: auto !important;
+        white-space: nowrap;
+        flex-wrap: nowrap;
+        gap: var(--space-8);
+        padding: 0 0 var(--space-16) var(--space-15);
+        border: none;
+        position: relative;
+        margin-bottom: 0;
+    }
+
+    .filterCategories::-webkit-scrollbar {
+        width: 0px;
+        background: transparent;
+    }
+
+    .drop::before{
+        content:'';
+        display: block;
+        width: 100%;
+        height: 1px;
+        margin: 0 auto;; 
+        background: var(--color-02);
+    }
+
+
+}

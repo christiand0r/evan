@@ -24,13 +24,13 @@ const ItemMenu = (props) => {
     useEffect(() => {
         if (isMenuOpen) {
             document.body.classList.remove('menu_open');
-        } 
+        }
     }, [isMenuOpen]);
 
 
     //Referencia a los los padres
     const handleItemClick = () => {
-        if(window.innerWidth < 992) {
+        if (window.innerWidth < 1200) {
             setIsActive(prevState => !prevState);
         }
 
@@ -41,7 +41,7 @@ const ItemMenu = (props) => {
     const handleBodyClick = () => {
         setIsMenuOpen(prevIsMenuOpen => !prevIsMenuOpen);
     }
-    
+
 
     const renderIcon = (iconItem) => {
         if (iconItem) {
@@ -60,7 +60,11 @@ const ItemMenu = (props) => {
             {children.length > 0 && (
                 <ul className={style.Submenu}>
                     {children.map((child) => (
-                        <ItemSubMenu key={child.id} children={child.children} item={child.title} url={child.url} classes={child.class} target={child.target} />
+                        <li key={child.id} children={child.children} className='nav-item'>
+                            <Link href={child.url || '#'} target={child.target} className={child.class} onClick={handleBodyClick}>
+                                {child.title && child.title}
+                            </Link>
+                        </li>
                     ))}
                 </ul>
             )}
@@ -69,20 +73,18 @@ const ItemMenu = (props) => {
 }
 
 
-const ItemSubMenu = (props) => {
+/*const ItemSubMenu = (props) => {
 
     const { item, classes, target, url } = props;
 
     return (
         <li className='nav-item'>
-            <Link href={url || '#'} target={target} className={classes} >
+            <Link href={url || '#'} target={target} className={classes} onClick={handleBodyClick}>
                 {item}
             </Link>
         </li>
     );
-};
-
-
+};*/
 
 
 export default ItemMenu;

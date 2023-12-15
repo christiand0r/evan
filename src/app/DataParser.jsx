@@ -38,7 +38,7 @@ export const parseBannerData = (data) => {
 
     const urlImage = imageData && imageData.attributes ? imageData.attributes.url || '' : '';
 
-    
+
 
     return {
         urlBannerLg,
@@ -61,14 +61,15 @@ export const parseSplitRowData = (data) => {
     const {
         image: {
             data: {
-                attributes: { url: urlImage },
-            },
-        },
+                attributes: { url: urlImage } = {},
+            } = {},
+        } = {},
         title,
         description,
         type_button,
         label_button,
-        url_button
+        url_button,
+        title_section
     } = data;
 
     return {
@@ -77,7 +78,8 @@ export const parseSplitRowData = (data) => {
         description,
         type_button,
         label_button,
-        url_button
+        url_button,
+        title_section
     };
 };
 
@@ -87,18 +89,18 @@ export const parseBannerMiddleData = (data) => {
     const {
         banner_desktop: {
             data: {
-                attributes: { url: urlBannerLg },
-            },
-        },
+                attributes: { url: urlBannerLg } = {},
+            } = {},
+        } = {},
         banner_mobile: {
             data: {
-                attributes: { url: urlBannerSm },
-            },
-        },
+                attributes: { url: urlBannerSm } = {},
+            } = {},
+        } = {},
         icon: {
             data: {
-                attributes: { url: iconBanner },
-            },
+                attributes: { url: iconBanner } = {},
+            } = {},
         },
         title_banner,
         classes
@@ -117,15 +119,32 @@ export const parseBannerMiddleData = (data) => {
 //Bannergradient
 export const parseBannerGradient = (data) => {
 
+    const {
+        bg_image: {
+            data: {
+                attributes: { url: bg_image } = {},
+            } = {},
+        } = {},
+        id: id,
+        title: title,
+        type_button: typeButton,
+        label_button: labelButton,
+        url_button: urlButton,
+        target_button: targetButton,
+        class_button: classButton,
+        type_gradient: typeGradient
+    } = data;
+
     return {
-        id: data.id,
-        title: data.title,
-        typeButton: data.type_button,
-        labelButton: data.label_button,
-        urlButton: data.url_button,
-        targetButton: data.target_button,
-        classButton: data.class_button,
-        typeGradient: data.type_gradient
+        bg_image,
+        id,
+        title,
+        typeButton,
+        labelButton,
+        urlButton,
+        targetButton,
+        classButton,
+        typeGradient,
     };
 }
 
@@ -199,5 +218,46 @@ export const parseGridTeams = (data) => {
     return {
         title_section: data.title_section,
         items_team: data.items_team
+    };
+}
+
+//Grid Teams
+export const parseGraphicTitle = (data) => {
+
+    return {
+        title: data.title,
+        prefix: data.prefix,
+        quantity_number: data.quantity_number
+    };
+}
+
+//Quote
+export const parseQuote = (data) => {
+
+    if (!data) {
+        return {
+            author_image: null,
+            author_name: null,
+            author_position: null,
+            author_message: null,
+        };
+    }
+
+    const {
+        imagen_quote: {
+            data: {
+                attributes: { url: author_image } = {},
+            } = {},
+        } = {},
+        author_name,
+        author_position,
+        author_message,
+    } = data;
+
+    return {
+        author_image,
+        author_name,
+        author_position,
+        author_message,
     };
 }

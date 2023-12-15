@@ -1,19 +1,24 @@
 import { getDataAreas } from "@/app/Apis";
-import Banner from "@/components/banner/Banner";
-import Content from "@/components/Content";
-import Areas from "@/components/Areas/Areas";
-import styles from './SingleAreas.module.css';
-
-import FormGeneral from "@/components/form/FormGeneral";
-
+import { parseBannerData, parseInfographicSteps, parseQuote } from "@/app/DataParser";
 import Image from "next/image";
 import { notFound } from "next/navigation";
 
+import styles from './SingleAreas.module.css';
+
+import Banner from "@/components/banner/Banner";
+import Content from "@/components/Content";
+import Areas from "@/components/Areas/Areas";
+import FormGeneral from "@/components/form/FormGeneral";
 import markdownToHtml from "@/lib/markdownToHtml";
+import LineStep from "@/components/line-steps/LineSteps";
+import SplitingRow from "@/components/spliting-row/SplitingRow";
+import GridBenefits from "@/components/grid-benefits/GridBenefits";
+import Quote from "@/components/quote/Quote";
 
 const CMS_HOST_URL = process.env.CMS_HOST;
 
 const SingleArea = async ({ params }) => {
+
     const dataResponse = await getDataAreas();
     const dataAreas = dataResponse.data;
 
@@ -29,54 +34,111 @@ const SingleArea = async ({ params }) => {
         (area) => area.attributes.url !== params.slug
     );
 
-    //console.log(dataAreas);
 
     // Utilizamos Promise.all para esperar a que todas las conversiones de markdown a HTML se completen
     const components = await Promise.all(filteredAreas.map(async (area) => {
 
-        const plot = await markdownToHtml(area.attributes.general_content);
-        const plotAux = await markdownToHtml(area.attributes.auxiliar_content);
+        const attrData = area.attributes;
+        const banner = parseBannerData(attrData.banner);
+        const form = attrData.form;
+        const steps = attrData.steps && parseInfographicSteps(attrData.steps);
+        const splitingRow = [attrData?.splitrow]; //Se agrega el splitingRow a un array para que el componente SplitingRow pueda leerlo de esa forma
+        const benefits = attrData?.benefits;
+        const quote = parseQuote(attrData?.quote);
 
-        //console.log(area.attributes.custom_title);
+        const plot = await markdownToHtml(area.attributes.general_content);
+
+        //console.log(attrData.quote);
+        //console.log(benefits);
+        //console.log(benefits.length);
 
         return (
             <div key={area.id}>
-                <Banner
-                    src={CMS_HOST_URL + area.attributes.banner_desktop.data.attributes.url}
-                    title={area.attributes.title}
-                    description_banner={area.attributes.description_banner}
-                    customName={area.attributes.custom_title}
-                    buttonProps={{
-                        label: area.attributes.button_title,
-                        customClass: area.attributes.button_class,
-                        url: area.attributes.button_url,
-                    }}
-                />
-
+                {banner.urlBannerLg &&
+                    <Banner
+                        src={CMS_HOST_URL + banner.urlBannerLg}
+                        src_sm={CMS_HOST_URL + banner.urlBannerSm}
+                        title={banner.title_banner}
+                        description_banner={banner.description_banner}
+                        customClass={styles.classBanner}
+                        customName={banner.title_banner}
+                        buttonProps={{
+                            label: banner.button_title,
+                            customClass: banner.button_class,
+                            url: banner.button_url,
+                        }}
+                    />
+                }
                 <div className="container">
+
                     <div className={styles.evanHubContent}>
                         <Content content={plot} customClass={styles.primaryContent} />
-                        <Content content={plotAux} customClass={styles.auxContent} />
                     </div>
+
+                    {benefits && benefits.length > 0 &&
+                        <GridBenefits
+                            content={benefits}
+                        />
+                    }
+
+                    {quote &&
+                        <div className="container-m">
+                            <Quote
+                                author_image={quote.author_image && CMS_HOST_URL + quote?.author_image}
+                                author_name={quote?.author_name}
+                                author_position={quote?.author_position}
+                                author_message={quote?.author_message}
+                                custom_class={styles?.quote_area}
+                            />
+                        </div>
+                    }
+
+                    {splitingRow && splitingRow[0] !== null &&
+                        <SplitingRow
+                            content={splitingRow}
+                            customClass={styles.splitingRow}
+                        />
+                    }
+                    {steps &&
+                        <LineStep
+                            titleSection={steps.title_section}
+                            steps={steps.steps}
+                            showButton={steps.show_button}
+                            labelButton={steps.label_button}
+                            urlButton={steps.url_button}
+                            targetButton={steps.target_button}
+                            typeButton={steps.type_button}
+                        />
+                    }
+
+                    {form?.form_activation === true &&
+                        <div className="container-s pb-xxl">
+                            <FormGeneral
+                                title={form.title && form.title}
+                                subtitle={form.descripcion && form.descripcion}
+                                subject={form.subject != null ? form.subject : area.attributes.title}
+                            />
+                        </div>
+                    }
+
                 </div>
 
-                {area.attributes.form_activation === true &&
-                    <div className="container-m pt-xxl pb-xxl">
-                        <FormGeneral title="Título formulario" subtitle="Para saber más acerca de nuestros servicios en evaluación jurídica rellena nuestro formulario:" subject={area.attributes.title}/>
-                    </div>
-                }
-
                 <section className={styles.relatedArea}>
-                    <Areas dataAreasFilter={otherAreas} slideLg={3} slideMd={2} slideSm={1.3} extraClass='container-m' />
+                    <Areas
+                        title_section='Otras áreas de práctica'
+                        dataAreasFilter={otherAreas}
+                        slideLg={3}
+                        slideMd={2}
+                        slideSm={1.3}
+                        extraClass='container-m'
+                    />
                 </section>
-
-
-
             </div>
         );
     }));
 
     return components;
 };
+
 
 export default SingleArea;

@@ -14,14 +14,14 @@ export default async function Menu() {
     const lastTwoItems = menuItems.slice(-2);
 
     const renderMenuItems = (items) => {
-      return items.map((item) => (
-        <ItemMenu id={item.id} children={item.children} item={item.title} icon={item.icon} url={item.url} classes={item.class} target={item.target} />
+      return items.map((item, index) => (
+        <ItemMenu key={index} id={item.id} children={item.children} item={item.title} icon={item.icon} url={item.url} classes={item.class} target={item.target} />
       ));
     };
 
     const renderExtraItems = (items) => {
-      return items.map((item) => (
-        <ItemMenu id={item.id} children={item.children} item={item.title} icon={item.icon} url={item.url} classes={item.class} target={item.target} />
+      return items.map((item, index) => (
+        <ItemMenu key={index} id={item.id} children={item.children} item={item.title} icon={item.icon} url={item.url} classes={item.class} target={item.target} />
       ))
     }
 

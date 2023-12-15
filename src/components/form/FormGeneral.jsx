@@ -10,7 +10,7 @@ import styles from './Forms.module.css'
 
 const FormGeneral = (props) => {
 
-    const { title, subtitle, subject } = props;
+    const { title, subtitle, subject = 'Contacto Evanhub' } = props;
 
     //Funciones y estados necesarios
     const { register, handleSubmit, setError, setValue, formState: { errors }, watch, reset } = useForm({
@@ -102,6 +102,7 @@ const FormGeneral = (props) => {
         return new Promise(resolve => setTimeout(resolve, ms));
     }
 
+
     return (
         <>
             {title && <h2 className='text-center display-large color-01 secondary-font mb-xl'>{title}</h2>}
@@ -112,8 +113,7 @@ const FormGeneral = (props) => {
                     <input type="hidden" name="subject" id="subject" value={subject && subject} />
 
                     <div className={`row ${styles.Row}`}>
-                        <div className="col-sm-12 col-md-6">
-                            <label htmlFor="name">Nombre completo <span>*</span></label>
+                        <div className="col-sm-12 col-md-6 position-relative">
                             <input
                                 type="text"
                                 id="name"
@@ -121,10 +121,10 @@ const FormGeneral = (props) => {
                                 required
                                 {...register('name')}
                             />
+                            <label htmlFor="name">Nombre completo <span>*</span></label>
                             {errors.name && <span className={styles.inputError}>{errors.name.message}</span>}
                         </div>
-                        <div className="col-sm-12 col-md-6">
-                            <label htmlFor="phone">Teléfono <span>*</span></label>
+                        <div className="col-sm-12 col-md-6 position-relative">
                             <input
                                 type="tel"
                                 id="phone"
@@ -132,12 +132,12 @@ const FormGeneral = (props) => {
                                 required
                                 {...register('phone')}
                             />
+                            <label htmlFor="phone">Teléfono <span>*</span></label>
                             {errors.phone && <span className={styles.inputError}>{errors.phone.message}</span>}
                         </div>
                     </div>
                     <div className={`row ${styles.Row}`}>
-                        <div className="col-sm-12 col-md-6">
-                            <label htmlFor="email">Correo electrónico <span>*</span></label>
+                        <div className="col-sm-12 col-md-6 position-relative">
                             <input
                                 type="email"
                                 id="email"
@@ -145,10 +145,10 @@ const FormGeneral = (props) => {
                                 required
                                 {...register('email')}
                             />
+                            <label htmlFor="email">Correo electrónico <span>*</span></label>
                             {errors.email && <span className={styles.inputError}>{errors.email.message}</span>}
                         </div>
-                        <div className="col-sm-12 col-md-6">
-                            <label htmlFor="emailValidate">Confirma correo electrónico <span>*</span></label>
+                        <div className="col-sm-12 col-md-6 position-relative">
                             <input
                                 type="email"
                                 id="emailValidate"
@@ -156,13 +156,14 @@ const FormGeneral = (props) => {
                                 required
                                 {...register('emailValidate')}
                             />
+                            <label htmlFor="emailValidate">Confirma correo electrónico <span>*</span></label>
                             {errors.emailValidate && <span className={styles.inputError}>{errors.emailValidate.message}</span>}
 
                         </div>
                     </div>
                     <div className={`row ${styles.Row}`}>
-                        <div className="col-sm-12 col-md-12">
-                            <label htmlFor="comments">Consulta</label>
+                        <div className="col-sm-12 col-md-12 position-relative">
+                            {/*<label htmlFor="comments">Consulta</label>*/}
                             <textarea
                                 id="comments"
                                 placeholder="Ingresa el requerimiento de asesoría"
@@ -171,7 +172,7 @@ const FormGeneral = (props) => {
                         </div>
                     </div>
                     <div className={`row mt-xl ${styles.Row}`}>
-                        <div className="col-sm-12 col-md-12">
+                        <div className="col-sm-12 col-md-12 position-relative">
                             <button className="evanhub-btn btn-full__primary" type="submit" disabled={isLoading}>
                                 {isLoading ? <span className={styles.loader}></span> : 'Enviar solicitud'}
                             </button>

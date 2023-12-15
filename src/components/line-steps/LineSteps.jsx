@@ -7,16 +7,22 @@ const LineStep = (props) => {
 
     return (
         <section className={`${styles.lineSteps} mt-xxl mb-xxl `}>
-            {titleSection && <h2 className="text-center display-large color-01 secondary-font"> {titleSection} </h2>}
+            
+            {titleSection && 
+                <div className="container-m">
+                    <h2 className="text-center display-large color-01 secondary-font"> {titleSection} </h2>
+                </div>
+            }
+            
             <div className="container-s">
                 <div className={styles.innerLineSteps}>
                     <div className='Steps'>
 
-                        {steps.map((step, index) => {
+                        {steps && steps.map((step, index) => {
                             //console.log(step);
                             return(
                                 <div key={step.id} className={styles.itemStep}>
-                                    <h3>{(index + 1).toString().padStart(2, '0')}</h3>
+                                    <h3>{ index + 1 /*(index + 1).toString().padStart(2, '0')*/}</h3>
                                     <span className={styles.dotStep}></span>
                                     <div className={styles.stepDetails}>
                                         {step.title_step && <h4>{step.title_step}</h4>}
