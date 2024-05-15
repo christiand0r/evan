@@ -1,19 +1,35 @@
 .PreviewTeam div[class*="col-"]:last-child{
-    padding-left: 115px;
+    padding-left: 96px;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    flex-direction: column;
+    gap: var(--space-24);
 }
 
 .PreviewTeam p{
-    font-size: var(--fs-25);
+    font-size: var(--fs-20);
     color: var(--color-09);
+    margin: 0;
+    line-height: 150%;
+}
+
+.PreviewTeam p + p{
+    margin-top: var(--space-10);
 }
 
 .SeparatorTitle{
-    background: var(--gradient-04);
+    background: var(--gradient-07);
     height: 8px;
     position: relative;
     right: 0;
     width: calc(100% + 40%);
     left: -40%;
+}
+
+.PreviewTeam h2,
+.PreviewTeam a{
+    margin: 0 !important;
 }
 
 @media screen and (width <= 768px) {
@@ -29,7 +45,8 @@
 
     .PreviewTeam a{
         width: 100%;
-        max-width: 100%;
+        max-width: 235px;
+        margin: 0 auto !important;
     }
 
     .PreviewTeam p{

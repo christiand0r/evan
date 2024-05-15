@@ -1,6 +1,5 @@
 import Banner from "@/components/banner/Banner";
-import FormGeneral from "@/components/form/FormGeneral";
-
+import ContactForm from "@/components/form/formCMS";
 import { getDataContactPage } from "../Apis";
 import { parseBannerData } from "../DataParser";
 
@@ -14,6 +13,7 @@ const ContactPage = async () => {
     const banner = parseBannerData(data.banner);
     const form = data.form;
 
+    //console.log(form.subject);
     return (
         <>
             <Banner
@@ -21,9 +21,10 @@ const ContactPage = async () => {
                 src_sm={CMS_HOST_URL + banner.urlBannerSm}
                 title={banner.title_banner}
             />
+
             {form.form_activation && (
                 <div className="container-s mb-xxl">
-                    <FormGeneral
+                    <ContactForm
                         title={form.title}
                         subtitle={form.descripcion}
                         subject={form.subject}

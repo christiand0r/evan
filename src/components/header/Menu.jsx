@@ -27,6 +27,7 @@ export default async function Menu() {
 
     return (
       <>
+
         <ul className={style.Menu}>
           {renderMenuItems(menuItems)}
         </ul>

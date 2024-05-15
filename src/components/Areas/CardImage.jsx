@@ -9,7 +9,7 @@ const CardImage = (props) => {
     return (
         <div className={styles.CardEvanhub}>
             <figure className="mb-0">
-                <Image src={img} width={280} height={200} style={{ width: '100%', height: '100%', objectFit: 'cover' }} alt={`imagen ${title}`} quality={75} sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" />
+                <Image src={img} width={280} height={208} style={{ width: '100%', height: '100%', objectFit: 'cover' }} quality={100} unoptimized={true} alt={`imagen ${title}`} />
             </figure>
             <div className={styles.InfoCard}>
                 <div className="inner-infocard">

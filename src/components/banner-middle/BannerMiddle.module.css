@@ -19,7 +19,7 @@
 .bannerMiddle .innerContainer h2 {
     max-width: 444px;
     font-weight: 500;
-    font-size: var(--fs-31);
+    font-size: var(--fs-32);
 }
 
 
@@ -36,13 +36,15 @@
     }
 
     .bannerMiddle .innerContainer h2 {
-        font-size: var(--fs-24);
+        font-size: var(--fs-20);
+        max-width: 100%;
+        margin-bottom: var(--space-24);
     }
 }
 
 @media screen and (width <= 768px) {
     .bannerMiddle .innerContainer {
         height: auto;
-        padding: var(--space-56) 0;
+        padding: var(--space-56) var(--space-16);
     }
 }

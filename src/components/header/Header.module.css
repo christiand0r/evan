@@ -25,13 +25,13 @@
     align-items: center;
     justify-content: flex-end;
     list-style: none;
-    gap: 16px;
+    gap: 26px;
 }
 
 .Header .HeaderRight nav ul li a,
 .Header .HeaderRight nav ul li button:not(.evanhub-btn) {
     color: var(--color-09);
-    font-size: var(--fs-18);
+    font-size: var(--fs-16);
     margin: 0;
     padding: 0;
 }
@@ -61,6 +61,10 @@
     transition: all .5s linear;
 }
 
+.Submenu li a::after{
+    height: 1px !important;
+}
+
 .Header .HeaderRight nav .Submenu li a::after,
 .Header .HeaderRight nav .Submenu li button::after {
     position: relative;
@@ -83,6 +87,23 @@
     transition: all .5s linear;
 }
 
+.ShowSubmenu {
+    transform: scaleX(1);
+    transform-origin: left;
+    opacity: 1;
+    transition: all .5s linear;
+}
+
+.Header .HeaderRight nav>ul li button::before{
+    content: '';
+    width: 100%;
+    height: 30px;
+    display: block;
+    position: absolute;
+    bottom: -20px;
+    z-index: 9;
+}
+
 .Header .HeaderRight nav ul li {
     position: relative;
 }
@@ -93,7 +114,7 @@
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
     z-index: 9;
     padding: 32px;
     gap: 16px;
@@ -103,14 +124,24 @@
     left: 50%;
     min-width: 220px;
     transform-origin: top;
-    transform: translate(-50%, 22px) scale(0);
+    transform: translate(-50%, 22px);
     box-shadow: var(--shadow-strong01);
-    transition: all .5s ease;
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+    transition: all 0.5s ease;
+}
+
+.Header .HeaderRight nav>ul li:hover .Submenu {
+    max-height: 300px; /* Adjust the value based on your content height */
+    opacity: 1;
+    transform: translate(-50%, 22px);
 }
 
 .Header .HeaderRight nav>ul li.Show .Submenu {
-    transform: translate(-50%, 22px) scale(1);
-    transition: all .5s ease;
+    max-height: 300px; /* Adjust the value based on your content height */
+    opacity: 1;
+    transform: translate(-50%, 22px);
 }
 
 .menuMobile {
@@ -135,10 +166,12 @@
     align-items: center;
     justify-content: center;
     gap: 8px;
+    font-size: var(--fs-14);
+    font-family: var(--primary-font);
 }
 
 .HeaderTop a i {
-    font-size: 1.2rem;
+    font-size: 0.889rem;
 }
 
 .hamburgerMenu {
@@ -234,19 +267,9 @@
 }
 
 @media screen and (width < 1200px) {
-    .menuMobile {
-        display: block;
-    }
+   
 
-    .menuDesktop {
-        display: none;
-
-    }
-
-    .extraMenu {
-        display: flex !important;
-        gap: var(--space-16);
-    }
+    
 
     .panel_menu_body .Menu {
         list-style: none;
@@ -266,8 +289,8 @@
     }
 
     .panel_menu_body>ul>li {
-        padding: var(--space-16) var(--space-8);
-        border-bottom: 1px solid rgba(46, 60, 113, 0.15);
+        padding: var(--space-8) var(--space-8);
+        /*border-bottom: 1px solid rgba(46, 60, 113, 0.15);*/
     }
 
     .extraMenu {
@@ -292,14 +315,9 @@
         bottom: 70px;
     }
 
-    .panel_menu_body>ul>li {
-        padding: var(--space-16) var(--space-8);
-        border-bottom: 1px solid rgba(46, 60, 113, 0.15);
-    }
-
     .buttonNav,
     .panel_menu_body li:not(:nth-last-child(-n+2)) a {
-        font-size: var(--fs-18);
+        font-size: var(--fs-16);
         border: none;
         background: none;
         width: 100%;
@@ -329,6 +347,23 @@
         display: block;
         animation: slideDown .5s forwards;
         transition: all .5s ease-in-out;
+    }
+}
+
+
+@media screen and (width < 991px) {
+    .menuMobile {
+        display: block;
+    }
+
+    .menuDesktop {
+        display: none;
+
+    }
+
+    .extraMenu {
+        display: flex !important;
+        gap: var(--space-16);
     }
 }
 

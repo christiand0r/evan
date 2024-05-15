@@ -22,7 +22,9 @@ export const generateMetadata = async ({ params }) => {
         };
     }
 
-    const image = CMS_HOST_URL + post.attributes.featured_image.data?.attributes.url;
+     const image = post.attributes?.featured_image?.data?.attributes?.url;
+
+    //console.log(image);
 
     const metadata = {
         title: post.attributes.title,
@@ -31,10 +33,13 @@ export const generateMetadata = async ({ params }) => {
             type: 'article',
             title: post.attributes.title,
             description: 'Descripción de tu post para Open Graph',
-            images: [{ url: image, alt: post.attributes.title }],
         },
         // Otros metadatos que desees agregar
     };
+
+     if (image) {
+        metadata.openGraph.images = [{ url: image, alt: post.attributes.title }];
+    }
 
     return metadata;
 };
@@ -53,7 +58,7 @@ const SinglePost = async ({ params }) => {
         if (Slugify(item.attributes.title) === slug) {
 
             const content = await markdownToHtml(item.attributes.content);
-            const image = CMS_HOST_URL + item.attributes.featured_image.data?.attributes.url;
+            const image = item.attributes.featured_image.data?.attributes.url;
             const categoriesRes = item.attributes.categories.data;
             const tagsRes = item.attributes.etiquetas.data;
 
@@ -88,21 +93,24 @@ const SinglePost = async ({ params }) => {
 
                         </div>
 
-                        {image && (
+
+                        {image != undefined && (
                             <div className={styles.image_post}>
                                 <Image 
-                                    src={image} 
+                                    src={CMS_HOST_URL + image} 
                                     alt={item.attributes.title} 
-                                    width={item.attributes.featured_image.data?.attributes.width} 
-                                    height={item.attributes.featured_image.data?.attributes.height} 
+                                    width={item.attributes.featured_image.data?.attributes?.width} 
+                                    height={item.attributes.featured_image.data?.attributes?.height} 
+                                    quality={100} 
+                                    unoptimized={true}
                                 />
                             </div>
                         )}
 
-                        <div dangerouslySetInnerHTML={{ __html: content || '' }}></div>
+                        <div className="container-l" dangerouslySetInnerHTML={{ __html: content || '' }}></div>
 
                         {tagsRes.length > 0 && (
-                            <div className={styles.Tags}>
+                            <div className={`container-l ${styles.Tags}`}>
                                 <h4>Etiquetas</h4>
                                 {tagsRes.map((item, index) => (
                                     <div className={styles.itemTag} key={index}>
@@ -113,7 +121,6 @@ const SinglePost = async ({ params }) => {
                                         )}
                                     </div>
                                 ))}
-
                             </div>
                         )}
 

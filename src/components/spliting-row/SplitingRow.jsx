@@ -16,7 +16,8 @@ const SplitingRow = (props) => {
             const splitContentPromises = content.map(async (item) => {
                 const imgSplit = CMS_HOST_URL + item?.split_image?.data?.attributes?.url;
                 const contentSplit = await markdownToHtml(item?.split_content);
-                return { imgSplit, contentSplit };
+                const contentSplitOrientation =item?.split_orientation;
+                return { imgSplit, contentSplit, contentSplitOrientation };
             });
 
             const resolvedSplitContent = await Promise.all(splitContentPromises);
@@ -26,15 +27,17 @@ const SplitingRow = (props) => {
         fetchSplitContent();
     }, [content]);
 
+    //console.log(splitContent);
+
     return (
         content ? (
             <section className={`${customClass} spliting_row_evanhub mb-xxl`}>
                 {splitContent.map((item, index) => (
-                    <div key={index} className={`${styles.spliting_row} ${item.split_orientation !== 'normal' ? styles.rowReverse : ''}  ${item.split_image?.data == null ? styles.noImage : ''}`}>
+                    <div key={index} className={`${styles.spliting_row} ${item.contentSplitOrientation !== 'normal' ? styles.rowReverse : ''}  ${item.split_image?.data == null ? styles.noImage : ''}`}>
                         <div className="spliting-row__content" dangerouslySetInnerHTML={{ __html: item.contentSplit }}></div>
                         {item.imgSplit && item.imgSplit !== CMS_HOST_URL + 'undefined' &&
                             <div className="spliting-row__image">
-                                <Image src={item.imgSplit} width={520} height={318} style={{ width: '100%', height: '100%' }} alt="Imagen evanhub" />
+                                <Image src={item.imgSplit} width={520} height={318} quality={100} unoptimized={true} style={{ width: '100%', height: '100%' }} alt="Imagen evanhub" />
                             </div>
                         }
                     </div>

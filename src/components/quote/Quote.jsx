@@ -8,7 +8,7 @@ const Quote = (props) => {
     return (
         <div className={`${styles.quote} mb-xxl ${custom_class}`}>
             <div className={styles.quote__image}>
-                {author_image && <Image src={author_image} alt="Quote" width={312} height={438} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />}
+                {author_image && <Image src={author_image} alt="Quote" width={312} height={438} quality={100} unoptimized={true} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />}
             </div>
             <div className={styles.quote__content}>
                 {author_message &&

@@ -2,9 +2,10 @@
 
 import { usePathname } from 'next/navigation'
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { Pagination, A11y } from 'swiper/modules';
+import { Pagination, Navigation, A11y } from 'swiper/modules';
 import CardImage from '@/components/Areas/CardImage';
 import 'swiper/css';
+import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 
 const CMS_HOST_URL = process.env.NEXT_PUBLIC_CMS_HOST_URL
@@ -17,16 +18,20 @@ export const SlideArea = (props) => {
     const perViewMd = slideMd ?? 2;
     const perViewSm = slideSm ?? 1;
 
-    //console.log(dataAreas[0]);
     const currentPath = usePathname();
-    //console.log(usePathname());
+
     return (
         <Swiper
-            modules={[Pagination, A11y]}
+            modules={[Pagination, Navigation, A11y]}
             spaceBetween={32}
             slidesPerView={perViewLg}
+            threshold={20}
             //loop={dataAreas.length >= perViewLg * 2 ? true : false}
-            pagination={{ clickable: true }}
+            navigation
+            pagination={{ 
+                clickable: true,  
+                type: 'fraction'
+            }}
             breakpoints={{
                 0: {
                     slidesPerView: perViewSm,
@@ -36,7 +41,7 @@ export const SlideArea = (props) => {
                     slidesPerView: perViewMd,
                     loop: true,
                 },
-                992: {
+                1024: {
                     slidesPerView: perViewLg,
                     loop: dataAreas.length >= perViewLg * 2 ? true : false,
                 },

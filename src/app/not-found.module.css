@@ -1,9 +1,12 @@
 .page404 {
     background-color: var(--neutral-15);
-    height: calc(100vh - calc(110px + 423px));
+    height: calc(100vh - 97px);
     display: flex;
     align-items: center;
     justify-content: center;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
 }
 
 .page404 h1 {

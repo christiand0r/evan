@@ -1,3 +1,7 @@
+.asesoria_split_row h2.display-large{
+    margin-bottom: var(--space-48) !important;
+}
+
 .split_row .row > div[class*="col-md-"]:first-child{
     display: flex;
     align-items: center;
@@ -5,8 +9,8 @@
 }
 
 .split_row .row > div[class*="col-md-"]:first-child img{
-    max-width: 358px;
-    max-height: 358px;
+    max-width: 266px;
+    max-height: 266px;
 }
 
 .split_row .row > div[class*="col-md-"]:last-child{
@@ -16,13 +20,14 @@
 }
 
 .split_row .row > div[class*="col-md-"]:last-child p{
-    font-size: var(--fs-24);
+    font-size: var(--fs-20);
+    text-align: justify;
 }
 
 @media screen and (width < 768px){
     .split_row .row > div[class*="col-md-"]:first-child img{
-        max-width: 230px;
-        max-height: 230px;
+        max-width: 170px;
+        max-height: max-content;
     }
 
     .split_row .row > div[class*="col-md-"]:last-child{

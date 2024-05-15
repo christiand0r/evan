@@ -115,7 +115,7 @@ export const getDataServicios = async () => {
 export const getDataBlog = async ({ page = 1, category = '', tag = '' }) => {
 
     try {
-
+        //const formattedTag = tag.name ? tag.name.replace(/-/g, ' ') : '';
         const formattedTag = tag.replace(/-/g, ' ');
 
         const res = await fetch(`${PUBLIC_CMS_HOST_URL}/api/posts?populate=*&_sort=publishedAt&pagination[pageSize]=6&pagination[page]=${page}${category ? `&filters[categories][name][$eq]=${category}` : ''}${formattedTag ? `&filters[etiquetas][name][$eq]=${formattedTag}` : ''}`)
@@ -152,7 +152,7 @@ export const getDataHome = async () => {
 
     try {
 
-        const res = await fetch(`${CMS_HOST_URL}/api/home?populate[banner_middle][populate]=*&populate[split_row][populate]=*&populate[banner_video][populate]=*&populate[split_gradient][populate]=*&populate[steps][populate]=*&populate=banner_gradient`)
+        const res = await fetch(`${CMS_HOST_URL}/api/home?populate[banner_middle][populate]=*&populate[split_row][populate]=*&populate[banner_video][populate]=*&populate[split_gradient][populate]=*&populate[steps][populate]=*&populate[banner_gradient][populate]=*`)
 
         if (!res.ok) {
             throw new Error('❌ Failed to fetch data home page');

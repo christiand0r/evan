@@ -39,7 +39,7 @@ const pageEquipo = async () => {
                 <GridTeam
                     titleSection={gridTeam.title_section}
                     members={gridTeam.items_team}
-                    initialItems={7}
+                    initialItems={19}
                     hostCms={CMS_HOST_URL}
                 />
                 <SplitRow

@@ -31,8 +31,6 @@ const TermsAndConditions = async () => {
         }
     });
 
-    //console.log(data.sidenav_group);
-    //const blockContent = parseBlockContentText(data.main_content);
     const banner = parseBannerData(data.banner);
 
     return (

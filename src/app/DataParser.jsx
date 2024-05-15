@@ -6,10 +6,10 @@ export const parseVideoData = (data) => {
         titleVideo: data.title,
         buttonVideo: data.title_button,
         targetButtonVideo: data.target_button,
-        typeButtonvideo: data.type_button
+        typeButtonvideo: data.type_button,
+        buttons: data.buttons,
     };
 };
-
 
 //Banner Normal
 export const parseBannerData = (data) => {
@@ -38,8 +38,6 @@ export const parseBannerData = (data) => {
 
     const urlImage = imageData && imageData.attributes ? imageData.attributes.url || '' : '';
 
-
-
     return {
         urlBannerLg,
         urlBannerSm,
@@ -53,7 +51,6 @@ export const parseBannerData = (data) => {
     };
 
 };
-
 
 //Split row
 export const parseSplitRowData = (data) => {
@@ -82,7 +79,6 @@ export const parseSplitRowData = (data) => {
         title_section
     };
 };
-
 
 //Middle banner
 export const parseBannerMiddleData = (data) => {
@@ -115,39 +111,42 @@ export const parseBannerMiddleData = (data) => {
     };
 };
 
-
 //Bannergradient
 export const parseBannerGradient = (data) => {
-
     const {
-        bg_image: {
-            data: {
-                attributes: { url: bg_image } = {},
+        bg_image:{
+            data:{
+                attributes: { url: bgImage },
             } = {},
         } = {},
-        id: id,
-        title: title,
-        type_button: typeButton,
-        label_button: labelButton,
-        url_button: urlButton,
-        target_button: targetButton,
-        class_button: classButton,
-        type_gradient: typeGradient
-    } = data;
-
-    return {
-        bg_image,
+        bg_img_mobile: {
+            data: {
+                attributes: { url: bgImageMobile },
+            } = {},
+        } = {},
         id,
         title,
-        typeButton,
-        labelButton,
-        urlButton,
-        targetButton,
-        classButton,
-        typeGradient,
-    };
-}
+        type_button: buttonType,
+        label_button: buttonLabel,
+        url_button: buttonUrl,
+        target_button: buttonTarget,
+        class_button: buttonClass,
+        type_gradient: gradientType
+    } = data || {};
 
+    return {
+        bgImage,
+        bgImageMobile,
+        id,
+        title,
+        buttonType,
+        buttonLabel,
+        buttonUrl,
+        buttonTarget,
+        buttonClass,
+        gradientType,
+    };
+};
 
 //Split-gradient
 export const parseSplitGradient = (data) => {
@@ -158,16 +157,26 @@ export const parseSplitGradient = (data) => {
                 attributes: { url: urlImage },
             },
         },
+        bgImage:{
+            data:{
+                attributes: { url: bgImage },
+            } = {},
+        } = {},
+        bgImageMobile:{
+            data:{
+                attributes: { url: bgImageMobile },
+            } = {},
+        } = {},
         title,
     } = data;
 
     return {
         urlImage,
-        title
+        title,
+        bgImage,
+        bgImageMobile
     };
 }
-
-
 
 //Infographic steps
 export const parseInfographicSteps = (data) => {
@@ -202,7 +211,6 @@ export const parseBlockContent = (data) => {
     };
 }
 
-
 //Block Content Text
 export const parseBlockContentText = (data) => {
 
@@ -210,7 +218,6 @@ export const parseBlockContentText = (data) => {
         content_text: data.content_text,
     };
 }
-
 
 //Grid Teams
 export const parseGridTeams = (data) => {

@@ -14,7 +14,7 @@ const BannerMiddle = (props) => {
             <div className="container">
                 <div className={styles.innerContainer}>
                     <h2 className="h1 display-small secondary-font">{title}</h2>
-                    <Image src={image} alt={title} width={849} height={853} style={{ width: "100%", height: "auto" }} />
+                    <Image src={image} alt={title} width={849} height={853} quality={100} unoptimized={true} style={{ width: "100%", height: "auto" }} />
                 </div>
             </div>
         </section>

@@ -22,7 +22,7 @@ const About = async () => {
     const splitingRows = data.spliting_rows;
     const bannerGradient = parseBannerGradient(data.banner_gradient);
 
-    //console.log(bannerGradient);
+    //console.log(bannerGradient.bgImage);
 
     return (
         <div className="">
@@ -59,12 +59,14 @@ const About = async () => {
                 />
             </div>
             <BannerGradient
-                custom_class="pb-xxl pt-xxl"
-                bg_image={CMS_HOST_URL + bannerGradient.bg_image}
+                custom_class="pb-xxl pt-xxl banner_gradient_about"
+                bg_image={CMS_HOST_URL + bannerGradient.bgImage}
+                bg_image_mobile={CMS_HOST_URL + bannerGradient.bgImageMobile}
                 title={bannerGradient.title}
-                type_gradient={bannerGradient.typeGradient}
-                type_button={bannerGradient.typeButton}
-                label_button={bannerGradient.labelButton}
+                type_gradient={bannerGradient.gradientType}
+                type_button={bannerGradient.buttonType}
+                label_button={bannerGradient.buttonLabel}
+                url_button={bannerGradient.buttonUrl}
             />
         </div>
     );

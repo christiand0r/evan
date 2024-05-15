@@ -6,13 +6,14 @@ import SplitRow from "@/components/split-row/SliptRow";
 import BannerGradient from '@/components/banner-gradient/BannerGradient';
 import LineStep from "@/components/line-steps/LineSteps";
 import SplitGradient from "@/components/split-gradient/SplitGradient";
+import styles from './page.module.css';
 
 import { getDataHome } from "./Apis";
 import { parseVideoData, parseBannerMiddleData, parseSplitRowData, parseBannerGradient, parseSplitGradient, parseInfographicSteps } from "./DataParser";
 
 export const metadata = {
   title: 'Evanhub Home',
-  description: 'Evanhun website home page',
+  description: 'Evanhub website home page',
 }
 
 const CMS_HOST_URL = process.env.CMS_HOST;
@@ -28,16 +29,15 @@ const Home = async () => {
   const splitGradientData = parseSplitGradient(dataResponse.data.attributes.split_gradient);
   const stepsData = parseInfographicSteps(dataResponse.data.attributes.steps);
 
-//console.log(bannerGradientData);
+  //console.log(dataResponse.data.attributes.banner_gradient);
+  //console.log(bannerGradientData);
   return (
     <main className='main'>
       <div className='fullwidth'>
         <VideoBanner 
             urlVideo={videoData.urlVideo} 
             titleBanner={videoData.titleVideo} 
-            titleButton={videoData.buttonVideo} 
-            targetButton={videoData.targetButtonVideo} 
-            typeButton={videoData.typeButtonvideo} 
+            infoButtons={videoData.buttons}
         />
         <Areas
             title_section='Conoce nuestras áreas de especialización' 
@@ -50,6 +50,8 @@ const Home = async () => {
         <SplitGradient 
             urlImage={CMS_HOST_URL + splitGradientData.urlImage}
             title={splitGradientData.title}
+            bgImage={CMS_HOST_URL + splitGradientData.bgImage}
+            bgImageMobile={CMS_HOST_URL + splitGradientData.bgImageMobile}
         />
         <LineStep 
             steps={stepsData.steps} 
@@ -77,12 +79,15 @@ const Home = async () => {
         />
         <BannerGradient 
             title={bannerGradientData.title} 
-            type_gradient={bannerGradientData.typeGradient} 
-            type_button={bannerGradientData.typeButton} 
-            label_button={bannerGradientData.labelButton} 
-            url_button={bannerGradientData.urlButton} 
-            target_button={bannerGradientData.targetButton} 
-            class_button={bannerGradientData.classButton} 
+            type_gradient={bannerGradientData.gradientType} 
+            type_button={bannerGradientData.buttonType} 
+            label_button={bannerGradientData.buttonLabel} 
+            url_button={bannerGradientData.buttonUrl} 
+            target_button={bannerGradientData.buttonTarget} 
+            class_button={bannerGradientData.buttonClass} 
+            custom_class={styles.BannerGradient}
+            bg_image={CMS_HOST_URL + bannerGradientData.bgImage}
+            bg_image_mobile={CMS_HOST_URL + bannerGradientData.bgImageMobile}
         />
       </div>
     </main>

@@ -8,6 +8,7 @@
     list-style: none;
     color: var(--color-09);
     line-height: 30px;
+    font-size: var(--fs-16);
 }
 
 .Footer ul a {

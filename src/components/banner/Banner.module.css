@@ -22,7 +22,7 @@
 .infoBanner p {
     color: var(--color-09);
     margin-bottom: var(--space-24);
-    font-size: var(--fs-24);
+    font-size: var(--fs-20);
     font-weight: 400;
 }
 

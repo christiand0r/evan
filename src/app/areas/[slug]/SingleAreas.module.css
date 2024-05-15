@@ -2,7 +2,7 @@
     color: var(--color-01);
     text-align: center;
     font-family: var(--secondary-font);
-    font-size: var(--fs-49);
+    font-size: var(--fs-40);
     margin-bottom: var(--space-48);
     max-width: 1005px;
     margin-left: auto;
@@ -16,6 +16,20 @@
 
 .primaryContent p{
     text-align: justify;
+}
+
+.primaryContent ul li{
+    justify-content: center;
+    align-items: flex-start;
+    text-align: center;
+}
+
+.primaryContent ul li::before{
+    position: relative;
+    display: contents;
+    margin-right: 5px;
+    display: flex;
+    align-items: flex-start;
 }
 
 .auxContent img {
@@ -45,12 +59,21 @@
 }
 
 .splitingRow h2{
-    font-size: var(--fs-31) !important;
+    font-size: var(--fs-24) !important;
 }
 
 .splitingRow ul{
     font-size: var(--fs-18);
     line-height: 150%;
+}
+
+.splitingRow>div:last-child img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    object-fit: cover;
+    width: calc(50% - calc(96px + 30px)) !important;
+    object-position: center;
 }
 
 .quote_area > div:last-child::after{
@@ -64,9 +87,13 @@
     display: block;
 }
 
+@media screen and (max-width: 1200px) {
+    .splitingRow>div:last-child img {
+        width: calc(60% - calc(96px + 30px)) !important;
+    }
+}
 
-
-@media screen and (width < 768px){
+@media screen and (max-width: 768px){
 
     .evanHubContent h2 {
         font-size: var(--fs-28);
@@ -80,11 +107,14 @@
     .evanHubContent ul li {
         align-items: flex-start;
         gap: var(--space-8);
+        text-align: center;
+        padding-left: 0px;
     }
 
     .evanHubContent ul li::before{
         margin: 0;
-        font-size: 20px;
+        font-size: inherit;
+        display: contents;
     }
 
     .evanHubContent ul li + li{
@@ -104,7 +134,7 @@
     }
 
     .splitingRow > div > div:first-child {
-        padding: var(--space-24) var(--space-16) var(--space-48);
+        padding: 0 var(--space-16) var(--space-24);
     }
 
     .splitingRow h2{
@@ -123,5 +153,36 @@
     .splitingRow ul li::before {
         margin-right: 0;
         font-size: 1.2rem;
+    }
+
+    .splitingRow{
+        margin-bottom: var(--space-56);
+    }
+
+    .quote_area > div:last-child::after{
+        display: none;
+    }
+
+    .quote_area > div:first-child::after{
+        content:'';
+        background: var(--gradient-07);
+        height: 8px;
+        position: relative;
+        right: 0;
+        width: calc(100% + 40%);
+        right: -40%;
+        display: block;
+        bottom: 10%;
+    }
+
+    .quote_area > div:first-child img{
+        object-position: top;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .splitingRow>div:last-child img{
+        position: relative;
+        width: 100% !important;
     }
 }

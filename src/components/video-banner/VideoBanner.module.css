@@ -17,6 +17,7 @@
 .bannerVideo .infoBanner h1 {
     color: var(--color-10);
     font-family: var(--primary-font);
+    font-weight: 600;
 }
 
 .bannerVideo .infoBanner .buttonBanner {
@@ -26,9 +27,12 @@
     transform: translate(-50%, 30%);
 }
 
+.buttonBanner:first-child {
+    display: none;
+}
+
 .bannerVideo .infoBanner .btnToggleVolumen {
     position: absolute;
-    color: var(--color-09);
     text-align: right;
     bottom: 75px;
     width: 100%;
@@ -36,7 +40,7 @@
     padding-right: calc(var(--bs-gutter-x) * .5);
     padding-left: calc(var(--bs-gutter-x) * .5);
     font-size: 20px;
-    color: var(--color-09);
+    color: var(--color-02);
     display: flex;
     align-items: center;
     justify-content: flex-end;
@@ -60,8 +64,38 @@
         transform: translate(-50%, -50%);
     }
 
-    .bannerVideo .infoBanner .btnToggleVolumen{
+    .bannerVideo .infoBanner .btnToggleVolumen {
         width: auto;
         right: 0;
+    }
+
+    .buttonsBanner {
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        transform: translate(-50%, 30%);
+        display: flex;
+        justify-content: center;
+        gap: 15px;
+        width: 100%;
+    }
+
+    .buttonBanner:first-child {
+        display: flex;
+        background-color: white;
+    }
+
+    .buttonBanner {
+        position: relative !important;
+        bottom: inherit !important;
+        left: 0 !important;
+        transform: translate(0, 0%) !important;
+        width: fit-content;
+        min-width: fit-content;
+    }
+
+    .btnToggleVolumen{
+        bottom: 40px !important;
+        right: 30px !important;
     }
 }

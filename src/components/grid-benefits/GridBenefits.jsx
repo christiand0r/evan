@@ -10,13 +10,13 @@ const GridBenefits = async ({ content }) => {
 
         const icono = CMS_HOST_URL + item?.icono?.data?.attributes?.url;
         const content = await markdownToHtml(item?.contenido);
-        console.log(content);
+        //console.log(content);
         return (
             content &&
                 <article key={index} className="grid-benefits__item">
                     <div className="inner-article">
                         <div className="grid-benefits__item__image">
-                            <Image src={icono} width={83} height={83} alt='icono benefits Evanhub' />
+                            <Image src={icono} width={83} height={83} quality={100} unoptimized={true} alt='icono benefits Evanhub' />
                         </div>
                         <div className="grid-benefits__item__content" dangerouslySetInnerHTML={{ __html: content }}>
                         </div>

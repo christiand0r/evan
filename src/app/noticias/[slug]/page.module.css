@@ -37,7 +37,7 @@
 
 .mainSingleBlog h1 {
     font-family: var(--secondary-font);
-    font-size: var(--fs-49);
+    font-size: var(--fs-36);
     color: var(--color-01);
     margin-bottom: var(--space-24);
     font-style: normal;
@@ -64,18 +64,19 @@
 }
 
 .Date {
-    font-size: var(--fs-18);
+    font-size: var(--fs-20);
     margin-bottom: var(--space-48);
 }
 
 .mainSingleBlog h2 {
     color: var(--color-01);
     font-family: var(--secondary-font);
-    font-size: var(--fs-31);
+    font-size: var(--fs-24);
     font-style: normal;
     font-weight: 400;
     line-height: 121.7%;
     margin-bottom: var(--space-48);
+    text-align: justify;
 }
 
 .Tags {

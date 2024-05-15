@@ -8,7 +8,7 @@ import styles from './SingleAreas.module.css';
 import Banner from "@/components/banner/Banner";
 import Content from "@/components/Content";
 import Areas from "@/components/Areas/Areas";
-import FormGeneral from "@/components/form/FormGeneral";
+import ContactForm from "@/components/form/formCMS";
 import markdownToHtml from "@/lib/markdownToHtml";
 import LineStep from "@/components/line-steps/LineSteps";
 import SplitingRow from "@/components/spliting-row/SplitingRow";
@@ -48,7 +48,7 @@ const SingleArea = async ({ params }) => {
 
         const plot = await markdownToHtml(area.attributes.general_content);
 
-        //console.log(attrData.quote);
+        //console.log(attrData.title);
         //console.log(benefits);
         //console.log(benefits.length);
 
@@ -61,7 +61,7 @@ const SingleArea = async ({ params }) => {
                         title={banner.title_banner}
                         description_banner={banner.description_banner}
                         customClass={styles.classBanner}
-                        customName={banner.title_banner}
+                        customName={attrData.title}
                         buttonProps={{
                             label: banner.button_title,
                             customClass: banner.button_class,
@@ -81,7 +81,7 @@ const SingleArea = async ({ params }) => {
                         />
                     }
 
-                    {quote &&
+                    {quote.author_image &&
                         <div className="container-m">
                             <Quote
                                 author_image={quote.author_image && CMS_HOST_URL + quote?.author_image}
@@ -96,7 +96,7 @@ const SingleArea = async ({ params }) => {
                     {splitingRow && splitingRow[0] !== null &&
                         <SplitingRow
                             content={splitingRow}
-                            customClass={styles.splitingRow}
+                            customClass={`${styles.splitingRow}`}
                         />
                     }
                     {steps &&
@@ -113,7 +113,7 @@ const SingleArea = async ({ params }) => {
 
                     {form?.form_activation === true &&
                         <div className="container-s pb-xxl">
-                            <FormGeneral
+                            <ContactForm
                                 title={form.title && form.title}
                                 subtitle={form.descripcion && form.descripcion}
                                 subject={form.subject != null ? form.subject : area.attributes.title}
@@ -125,7 +125,7 @@ const SingleArea = async ({ params }) => {
 
                 <section className={styles.relatedArea}>
                     <Areas
-                        title_section='Otras áreas de práctica'
+                        title_section='Otras áreas de especialización'
                         dataAreasFilter={otherAreas}
                         slideLg={3}
                         slideMd={2}

@@ -7,11 +7,11 @@
 }
 
 .equipo_split_row h2{
-    font-size: var(--fs-39);
+    font-size: var(--fs-32);
 }
 
 .equipo_split_row p{
-    font-size: var(--fs-23);
+    font-size: var(--fs-20);
 }
 
 .equipo_split_row .row > div[class*="col-"]:last-child{

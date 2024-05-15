@@ -81,6 +81,9 @@
 
 .CardEvanhub:hover .InfoCard a{
     background: transparent;
+    color: white !important;
+    background-position: 100% 50% !important;
+    background-size: 100% auto !important;
     border: 1px solid var(--color-10);
 }
 
@@ -89,9 +92,15 @@
     transition: all .4s ease;
 }
 
-.CardEvanhub:hover .InfoCard a:hover{
-    background-color: var(--color-10);
-    color: var(--color-01) !important;
+.CardEvanhub .InfoCard a{
+    transition: all .4s ease;
+}
+
+.CardEvanhub .InfoCard a:hover{
+    background-image: var(--gradient-04) !important;
+    background-position: 0% 50% !important;
+    background-size: 150% auto !important;
+    transition: all .4s ease;
 }
 
 

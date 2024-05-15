@@ -2,15 +2,17 @@ import Link from 'next/link'
 import styles from './not-found.module.css'
 import { getNotFound } from '@/app/Apis'
 
+const CMS_HOST_URL = process.env.CMS_HOST;
+
 const NotFound = async () => {
 
     const data = await getNotFound();
     const dataRes = data.data.attributes;
 
-    //console.log(dataRes);
+    const bgImage = dataRes.background_image.data.attributes.url;
 
     return (
-        <div className={`${styles.page404} page-404`}>
+        <div className={`${styles.page404} page-404`} style={bgImage ? { backgroundImage: `url(${CMS_HOST_URL + bgImage})` } : ''} >
             <div className='container'>
                 <div className='inner_container'>
                     {dataRes.title_404 && <h1 className="text-center">{dataRes.title_404}</h1>}

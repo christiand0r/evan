@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import styles from "./TeamGrid.module.css";
@@ -9,23 +9,49 @@ import { faLinkedinIn } from "@fortawesome/free-brands-svg-icons";
 //import { useSpring, animated } from "react-spring";
 import { motion, AnimatePresence } from "framer-motion";
 
+const isMobile = typeof window !== 'undefined' && /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+
 const GridTeam = (props) => {
 
     const { initialItems, titleSection, members, hostCms } = props;
 
-    const initItems = initialItems ? initialItems : 7;
+    const initItems = initialItems ? (isMobile ? initialItems + 1 : initialItems) : 11;
     const [visibleItems, setVisibleItems] = useState(initItems);
+    const [itemsAdded, setItemsAdded] = useState(0);
 
     const teamData = members;
 
     const showMoreItems = () => {
-        setVisibleItems((prevValue) => prevValue + 4);
+
+        const itemsHidden = teamData.length - visibleItems;
+        var showItems = 0;
+
+        if(itemsHidden < 4){
+            showItems = itemsHidden;
+        }else{
+            showItems = 4;
+        }
+
+        setVisibleItems((prevValue) => prevValue + showItems);
+        setItemsAdded((prevValue) => prevValue + showItems);
     };
 
-    const showLessItems = () => {
-        const totalItems = teamData.length + 1;
-        setVisibleItems((prevValue) => + prevValue - (totalItems - initItems));
-    }
+    const showLessItems = () => { 
+        setVisibleItems(initItems);
+        setItemsAdded(0);
+    };
+
+    const toggleItems = () => {
+        if (visibleItems < teamData.length) {
+            showMoreItems();
+        } else {
+            showLessItems();
+        }
+    };
+
+  
+
+   
 
     return (
         <section className={`${styles.gridTeams} grid-teams mb-xxl`}>
@@ -49,6 +75,8 @@ const GridTeam = (props) => {
                                         width={300}
                                         height={300}
                                         priority
+                                        quality={100} 
+                                        unoptimized={true}
                                     />
                                 </figure>
                                 <div className="grid-team__item__details">
@@ -71,8 +99,13 @@ const GridTeam = (props) => {
 
             {teamData.length > initItems && (
                 <div className="container buttonContent d-flex justify-content-center mt-xl">
-                    <button id="showMore" type="button" onClick={visibleItems < teamData.length ? showMoreItems : showLessItems} className="evanhub-btn btn-outline__primary mx-w-fit">
-                        {visibleItems < teamData.length ? 'Conocer más profesionales' : 'Ver menos profesionales'}
+                    <button 
+                        id="showMore" 
+                        type="button" 
+                        onClick={toggleItems}
+                        className="evanhub-btn btn-outline__primary mx-w-fit"
+                    >
+                        {visibleItems < teamData.length ? 'Ver más profesionales' : 'Ver menos profesionales'}
                         <i className={`bi ${visibleItems < teamData.length ? 'bi-chevron-down' : 'bi-chevron-up'}`} ></i>
                     </button>
                 </div>

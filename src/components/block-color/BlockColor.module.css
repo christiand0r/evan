@@ -5,12 +5,13 @@
 .blockColorContent{
     padding: var(--space-96) var(--space-48);
     background-color: var(--neutral-15);
+    border-radius: var(--b-radius-16);
 }
 
 .blockColorContent p{
     color: var(--color-09);
     text-align: justify;
-    font-size:var(--fs-24);
+    font-size:var(--fs-20);
     font-style: normal;
     font-weight: 400;
     line-height: 150%;

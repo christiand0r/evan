@@ -1,6 +1,14 @@
-.banner_about h1,
-.banner_about p{
+.banner_about h1{
     font-size: var(--fs-31);
+}
+
+.banner_about p{
+    font-size: var(--fs-24);
+}
+
+.banner_gradient_about{
+    border-radius: 0;
+    padding: var(--space-96) 0;
 }
 
 

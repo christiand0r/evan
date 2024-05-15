@@ -33,13 +33,13 @@ const Sharer = (props) => {
 
     const shareTwitter = () => {
         if (typeof window !== 'undefined' && typeof document !== 'undefined') {
-            window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(document.title)}&url=${encodeURIComponent(window.location.href)}&hashtags=conectamayor&via=ConectaMayor&related=twitterapi,twitter`, 'sharer', 'scrollbars=yes,width=800,height=400');
+            window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(document.title)}&url=${encodeURIComponent(window.location.href)}&hashtags=evanhub&via=Evanhub&related=twitterapi,twitter`, 'sharer', 'scrollbars=yes,width=800,height=400');
         }
     };
 
     return (
         <div className="social-share-wrap">
-            <h5 className="text-center fw-bold tertiary__color">Compartir</h5>
+            <h5 className="text-center fw-semibold tertiary__color">Compartir</h5>
             <ul className="social-profile s-rounded s-secondary s-md">
                 <li>
                     <button onClick={shareTwitter}>

@@ -1,15 +1,11 @@
 import HamburgerMenu from './HamburgerMenu';
-import ClosePanel from './ClosePanel';
-
 import styles from '@/components/header/Header.module.css'
-
 import Link from 'next/link';
 import Image from 'next/image';
-
 import Menu from './Menu';
 import HeaderTop from './TopHeader';
-
 import Logo from '../../../public/logo-evanhub.svg';
+import PanelMobile from './panelMobile';
 
 const Header = ({ isSticky }) => {
 
@@ -24,7 +20,7 @@ const Header = ({ isSticky }) => {
                                 <div className={styles.HeaderLeft}>
                                     <div className="logo-container">
                                         <Link href='/' aria-label='Logo Evanhub'>
-                                            <Image src={Logo} width={122} height={43} alt="Logo Evanhub" />
+                                            <Image src={Logo} width={122} height={43} quality={100} unoptimized={true} alt="Logo Evanhub" />
                                         </Link>
                                     </div>
                                 </div>
@@ -44,6 +40,9 @@ const Header = ({ isSticky }) => {
             </header>
 
             <div className={styles.menuMobile}>
+                <PanelMobile />
+
+                {/*}
                 <div className={`${styles.panelMenu} panel_menu`}>
                     <div className={styles.panel_menu_header}>
                         <img src="/evanhub-logo.png" alt="Logo Evanhub" />
@@ -53,17 +52,10 @@ const Header = ({ isSticky }) => {
                         <Menu />
                     </div>
                 </div>
+    */ }
             </div>
         </>
     );
 };
-
-Header.getInitialProps = ({ req }) => {
-    const scrollPosition = req && req.headers && req.headers.scrollposition;
-    const isSticky = scrollPosition > 200;
-  
-    console.log('isSticky', isSticky);
-    return { isSticky };
-  };
 
 export default Header;

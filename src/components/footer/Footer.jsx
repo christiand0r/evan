@@ -46,7 +46,7 @@ const Footer = async () => {
                         <div className={styles.innerContainer}>
 
                             <Link href='/' aria-label='Logo Evanhub'>
-                                <Image src={Logo} alt="Logo Footer" width={225} height={79} />
+                                <Image src={Logo} alt="Logo Footer" quality={100} unoptimized={true} width={225} height={79} />
                             </Link>
 
                         </div>
@@ -87,7 +87,7 @@ const Footer = async () => {
                     <div className='container'>
                         <div className={styles.innerContainer}>
                             <p>Copyright © <span id="currentYear">{new Date().getFullYear()}</span>. Todos los derechos reservados.</p>
-                            <p>Diseño y Desarrollo <a href='https://www.somosforma.com/' target='_blank'>Forma</a> | <a href='https://moovmediagroup.com/' target='_blank'>Moovmedia Group</a></p>
+                            {/*<p>Diseño y Desarrollo <a href='https://www.somosforma.com/' target='_blank'>Forma</a> | <a href='https://moovmediagroup.com/' target='_blank'>Moovmedia Group</a></p>*/}
                         </div>
                     </div>
                 </div>

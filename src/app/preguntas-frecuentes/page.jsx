@@ -12,12 +12,15 @@ const CMS_HOST_URL = process.env.CMS_HOST;
 const FaqPage = async () => {
 
     const dataResponse = await getDataFaqPage();
-    const data = dataResponse.data.attributes;
+    const data = dataResponse?.data?.attributes;
+
+    //console.log(data?.banner_gradient);
 
     const banner = parseBannerData(data.banner);
-    const bannerGradientData = parseBannerGradient(data.banner_gradient);
+    const bannerGradientData = parseBannerGradient(data?.banner_gradient);
     const AccordionData = data.accordions;
 
+    //console.log(bannerGradientData);
     return (
         <>
             <Banner
@@ -33,13 +36,13 @@ const FaqPage = async () => {
             </div>
             <div className="container">
                 <BannerGradient
-                    title={bannerGradientData.title}
-                    type_gradient={bannerGradientData.typeGradient}
-                    type_button={bannerGradientData.typeButton}
-                    label_button={bannerGradientData.labelButton}
-                    url_button={bannerGradientData.urlButton}
-                    target_button={bannerGradientData.targetButton}
-                    class_button={bannerGradientData.classButton}
+                    title={bannerGradientData?.title}
+                    type_gradient={bannerGradientData?.gradientType}
+                    type_button={bannerGradientData?.buttonType}
+                    label_button={bannerGradientData?.buttonLabel}
+                    url_button={bannerGradientData?.buttonUrl}
+                    target_button={bannerGradientData?.buttonTarget}
+                    class_button={bannerGradientData?.buttonClass}
                 />
             </div>
             <div className="bg-neutral-15 pt-xxl pb-xxl">

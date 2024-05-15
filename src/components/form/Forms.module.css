@@ -1,3 +1,7 @@
+.Subtitle{
+    font-size: var(--fs-20);
+}
+
 .formEvanhub {
     border: 1px solid var(--color-02);
     border-radius: var(--b-radius-16);
@@ -32,6 +36,26 @@
     opacity: 0;
 }
 
+.formEvanhub .input_flag > div:first-child {
+    position: absolute;
+    top: 15px;
+    left: 30px;
+    padding-right: 15px;
+}
+
+.formEvanhub .input_flag > div:first-child::after{
+    content: '';
+    width: 1px;
+    height: 48px;
+    background: var(--color-02);
+    position: absolute;
+    right: 0;
+}
+
+.formEvanhub .input_flag input{
+    padding-left: 80px;
+}
+
 .formEvanhub label {
     margin-bottom: 5px;
     position: absolute;
@@ -44,10 +68,8 @@
 }
 
 .formEvanhub input:focus + label,
-.formEvanhub input:hover + label,
-.formEvanhub input:valid + label,
-.formEvanhub input:active + label,
-.formEvanhub input:visited + label {
+/*.formEvanhub input:hover + label,*/
+.focused {
     top: -9px;
     font-size: 0.6rem;
     transform: translateY(0);
@@ -58,6 +80,24 @@
 
 .formEvanhub label span {
     color: var(--color-02);
+}
+
+.phone_label{
+    left: 100px !important;
+}
+
+.isNoValidate + label{
+    color: red;
+
+}
+
+.isValidate + label {
+    top: -9px;
+    font-size: 0.6rem;
+    transform: translateY(0);
+    left: 29px;
+    opacity: 1;
+    background: white;
 }
 
 .formEvanhub .Row+.Row {
@@ -171,5 +211,24 @@
 
     .Row button{
         max-width: 100%;
+    }
+
+    .Row > div[class*="col-"] + div[class*="col-"]{
+        margin-top: var(--space-24);
+    }
+
+    .Row:last-child > div[class*="col-"]{
+        padding: 0 40px;
+    }
+
+    .Subtitle{
+        font-size: var(--fs-16);
+        color: var(--color-09);
+    }
+
+    .formEvanhub label,
+    .formEvanhub textarea::placeholder{
+        font-size: var(--fs-16);
+        margin-bottom: 0;
     }
 }

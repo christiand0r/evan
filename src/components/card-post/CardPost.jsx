@@ -1,24 +1,8 @@
 import Image from "next/image";
 import Link from "next/link";
+import Slugify from "../Slugify";
 import styles from "./CardPost.module.css";
 
-const slugify = (text) => {
-    if (typeof text !== 'string') {
-        return '';
-    }
-
-    const from = "ÁÉÍÓÚáéíóú";
-    const to   = "AEIOUaeiou";
-
-    const newText = text.split('').map((char, i) => 
-        from.indexOf(char) !== -1 ? to[from.indexOf(char)] : char
-    ).join('');
-
-    return newText
-        .toLowerCase()
-        .replace(/ /g, '-')
-        .replace(/[^\w-]+/g, '');
-};
 
 const CardPost = (props) => {
 
@@ -29,22 +13,22 @@ const CardPost = (props) => {
 
     const fechaString = date;
     const fecha = new Date(fechaString);
-
     const opcionesDeFormato = { year: 'numeric', month: 'long', day: 'numeric' };
     const formatoFecha = new Intl.DateTimeFormat('es-ES', opcionesDeFormato);
-
     const fechaFormateada = formatoFecha.format(fecha);
 
     return (
         <article className="card-post">
             <div className={styles.CardImage}>
                 {urlImage && (
-                    <Link href={`/noticias/${slugify(title)}`}>
+                    <Link href={`/noticias/${Slugify(title)}`}>
                         <Image
                             src={urlImage}
                             alt={` Imagen ${title} noticia`}
                             width={600}
                             height={400}
+                            quality={100} 
+                            unoptimized={true}
                         />
                     </Link>
                 )}
@@ -64,17 +48,18 @@ const CardPost = (props) => {
                 )}
                 {title && (
                     <div className={styles.CardTitle}>
-                        <Link href={`/noticias/${slugify(title)}`}>
+                        <Link href={`/noticias/${Slugify(title)}`}>
                             <h3>{title}</h3>
                         </Link>
                     </div>
                 )}
+                {/*
                 <div className={styles.CardShortContent}>
                     <p>
                         {short_content}
                     </p>
                 </div>
-
+                */}
                 {tagsRes.length > 0 && (
                     <div className={styles.CardTags}>
                         {tagsRes.map((item, index) => (

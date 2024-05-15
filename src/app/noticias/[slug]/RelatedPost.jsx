@@ -35,7 +35,7 @@ const RelatedPosts = (props) => {
                 </div>
                 <div className="d-flex justify-content-center align-item-center">
                     <Button
-                        label='Ver más artículos'
+                        label='Ir al blog'
                         target='_self'
                         type='full primary'
                         url='/noticias'

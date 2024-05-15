@@ -11,14 +11,61 @@ import BannerSplitGradient from "@/components/banner-split-gradient/BannerSplitG
 const CMS_HOST_URL = process.env.NEXT_PUBLIC_CMS_HOST_URL;
 
 const BlogPage = () => {
-    const [page, setPage] = useState(1);
+
+    const [initialPage, setInitialPage] = useState(1);
+    const [initialCategory, setInitialCategory] = useState('Todas las categorias');
+    const [initialTag, setInitialTag] = useState('Filtrar por etiqueta');
+
+    const [page, setPage] = useState(initialPage);
+    const [filtersChanged, setFiltersChanged] = useState(false);
     const [dataBlog, setDataBlog] = useState([]);
     const [dataPagination, setDataPagination] = useState({ pageSize: 1, total: 0 });
     const [dataCategories, setdataCategories] = useState([]);
-    const [buttonTitle, setButtonTitle] = useState('Filtrar por etiqueta');
-    const [selectedCategory, setSelectedCategory] = useState('Todas las categorias');
+    const [buttonTitle, setButtonTitle] = useState(initialTag);
+    const [selectedCategory, setSelectedCategory] = useState(initialCategory);
     const [searchPerformed, setSearchPerformed] = useState(false);
     const [loading, setLoading] = useState(true);
+    const [panelTags, setPanelTags] = useState(false);
+    const [selectedTags, setSelectedTags] = useState([]);
+
+
+    useEffect(() => {
+        if (typeof window !== "undefined") {
+            const queryParams = new URLSearchParams(window.location.search);
+            setInitialPage(parseInt(queryParams.get('page')) || 1);
+            setInitialCategory(queryParams.get('category') || 'Todas las categorias');
+            setInitialTag(queryParams.get('tag') || 'Filtrar por etiqueta');
+        } else {
+            setInitialPage(1);
+            setInitialCategory('Todas las categorias');
+            setInitialTag('Filtrar por etiqueta');
+        }
+    }, []);
+
+
+    useEffect(() => {
+
+        if (typeof window !== "undefined") {
+            const newUrl = '/noticias';
+            const queryParams = new URLSearchParams();
+
+            if (selectedCategory !== 'Todas las categorias') {
+                queryParams.set('category', Slugify(selectedCategory));
+            }
+
+            if (buttonTitle !== 'Filtrar por etiqueta') {
+                queryParams.set('tag', Slugify(buttonTitle));
+            }
+
+            if (page > 1) {
+                queryParams.set('page', page);
+            }
+
+            window.history.replaceState({}, '', `${newUrl}${queryParams.toString() ? `?${queryParams.toString()}` : ''}`);
+        }
+    }, [page, selectedCategory, buttonTitle]);
+
+
 
     const fetchData = async () => {
         try {
@@ -31,14 +78,27 @@ const BlogPage = () => {
 
             if (buttonTitle !== 'Filtrar por etiqueta') {
                 requestData.tag = buttonTitle;
+
+                // Si estamos en una página diferente a la 1 y no hay categoría seleccionada, eliminar 'page'
+                if (page > 1 && !selectedCategory) {
+                    window.history.replaceState({}, '', `/noticias?tag=${buttonTitle}`);
+                }
             }
 
             if (selectedCategory !== 'Todas las categorias') {
                 requestData.category = selectedCategory;
+
+                // Si estamos en una página diferente a la 1 y no hay etiqueta seleccionada, eliminar 'page'
+                if (page > 1 && !buttonTitle) {
+                    window.history.replaceState({}, '', `/noticias?category=${selectedCategory}`);
+                }
             }
+
+
 
             const { data: dataBlog, pagination: fetchedPagination } = await getDataBlog(requestData);
             const { data: dataAllCat } = await getAllPosts();
+
             setDataBlog(dataBlog);
             setDataPagination(fetchedPagination);
             setdataCategories(dataAllCat);
@@ -54,17 +114,38 @@ const BlogPage = () => {
         fetchData();
     }, [buttonTitle, selectedCategory, page]);
 
+    const handlePanelTags = () => {
+        setPanelTags(true);
+        document.body.classList.add('open_tags');
+    }
+
+    const handleClosePanelTags = () => {
+        setPanelTags(false);
+        document.body.classList.remove('open_tags');
+    }
+
+
     const handleSelect = (selectedItem) => {
+
         setButtonTitle(selectedItem);
+
+
+        if (page !== 1) {
+            setPage(1);
+            return;
+        }
     };
 
     const handleCategoryClick = (category) => {
-        //console.log(category);
         if (category === 'Todas las categorias') {
             setSelectedCategory('Todas las categorias');
             setButtonTitle('Filtrar por etiqueta');
         } else {
             setSelectedCategory(category);
+            if (page !== 1) {
+                setPage(1);
+                return;
+            }
         }
     };
 
@@ -92,13 +173,15 @@ const BlogPage = () => {
     const sortedTags = uniqueTags && uniqueTags.sort((a, b) => a.id - b.id);
 
 
+
     const handlePageChange = (newPage) => {
-        if (newPage >= 1 && newPage <= Math.ceil(dataPagination.total / dataPagination.pageSize)) {
+        // Solo cambia la página si es diferente
+        if (newPage !== page) {
             setPage(newPage);
         }
     };
 
-    const dataFeaturedPost = dataBlog && dataBlog.filter((item) => item.attributes.featured_post === true).splice(0, 1)[0];
+    const dataFeaturedPost = dataCategories && dataCategories.filter((item) => item.attributes.featured_post === true).splice(0, 1)[0];
 
     const renderPaginationButtons = () => {
         const totalPages = Math.ceil(dataPagination.total / dataPagination.pageSize);
@@ -121,8 +204,6 @@ const BlogPage = () => {
         return pageButtons;
     };
 
-    //console.log(dataPagination);
-
     return (
         <>
             <BannerSplitGradient
@@ -131,7 +212,7 @@ const BlogPage = () => {
                 description_banner={dataFeaturedPost && dataFeaturedPost.attributes.short_content}
                 gradient=""
                 buttonProps={{
-                    label: 'Leer artículo',
+                    label: 'Leer artículos',
                     target: '_self',
                     url: dataFeaturedPost && `/noticias/${Slugify(dataFeaturedPost.attributes.title)}`,
                     type: 'outline secondary'
@@ -154,26 +235,86 @@ const BlogPage = () => {
 
                     {sortedTags && (
                         <div className={`${styles.drop} drop mb-xl`}>
-                            <Dropdown onSelect={handleSelect} className={styles.Dropdown}>
-                                <Dropdown.Toggle variant="secondary" id="dropdown-basic">
+                            <div className="d-block d-sm-block d-md-none">
+                                <button type="button" className={styles.Dropdown} onClick={handlePanelTags}>
                                     <i className="bi bi-filter d-block d-sm-block d-md-none"></i>
-                                    <span>{buttonTitle}</span>
+                                    <span>Filtrar por etiqueta</span>
+                                    {buttonTitle !== 'Filtrar por etiqueta' && (
+                                        <span className={styles.selected__numb}>1</span>
+                                    )}
                                     <i className="bi bi-chevron-down d-none d-sm-none d-md-block"></i>
-                                </Dropdown.Toggle>
-                                <Dropdown.Menu className={styles.DropdownToggle}>
-                                    {sortedTags.map((tag, index) => (
-                                        <Dropdown.Item key={index} eventKey={tag.name} className={`dopdown_item__${Slugify(tag.name)}`} >
-                                            {tag.name}
-                                        </Dropdown.Item>
-                                    ))}
-                                </Dropdown.Menu>
-                            </Dropdown>
+                                </button>
+
+                                <div className={`${styles.panel__tags} ${panelTags ? styles.panelTagsActive : ''}`}>
+                                    <div className={styles.header__panel} >
+                                        <p>Filtrar por etiqueta</p>
+                                        <i className="bi bi-x-lg" onClick={handleClosePanelTags}></i>
+                                    </div>
+                                    <div className={styles.subheader__panel}>
+                                        <p>Selecciona una opción</p>
+                                    </div>
+                                    <div className={styles.body__panel}>
+                                        {sortedTags.map((tag, index) => (
+                                            <div key={index} className={styles.item__tag}>
+                                                <input type="radio" name="tag" id={`tag-${index + 1}`} className="panel__tag-input" onChange={() => handleSelect(tag.name)} />
+                                                <label htmlFor={`tag-${index + 1}`} className="panel__tag-label">{tag.name}</label>
+                                            </div>
+                                        ))}
+                                    </div>
+                                    {buttonTitle !== 'Filtrar por etiqueta' && (
+                                        <div className={styles.footer__panel}>
+                                            <button onClick={handleClosePanelTags} className="evanhub-btn mx-w-250 btn-full__primary">Mostrar resultados</button>
+                                        </div>
+                                    )}
+                                </div>
+                            </div>
+                            <div className="d-none d-sm-none d-md-block">
+                                <Dropdown onSelect={handleSelect} className={styles.Dropdown}>
+                                    <Dropdown.Toggle variant="secondary" id="dropdown-basic">
+                                        <i className="bi bi-filter d-block d-sm-block d-md-none"></i>
+                                        <span>{buttonTitle}</span>
+                                        <i className="bi bi-chevron-down d-none d-sm-none d-md-block"></i>
+                                    </Dropdown.Toggle>
+                                    <Dropdown.Menu className={styles.DropdownToggle}>
+                                        {sortedTags.map((tag, index) => (
+                                            <Dropdown.Item key={index} eventKey={tag.name} className={`dopdown_item__${Slugify(tag.name)}`} >
+                                                {tag.name}
+                                            </Dropdown.Item>
+                                        ))}
+                                    </Dropdown.Menu>
+                                </Dropdown>
+                            </div>
                         </div>
                     )}
 
+
                     {loading ? (
-                        <div className={styles.Loading}>
-                            <span className={styles.Loader}></span>
+                        <div className={styles.GridPost}>
+                            {Array.from({ length: 6 }).map((_, index) => (
+                                <div className={styles.loading}>
+                                    <article className="card-post">
+                                        <div className="placeholder-glow">
+                                            <span className="placeholder col-12" style={{ height: 388 }}></span>
+                                        </div>
+                                        <div>
+                                            <div className="card-cat placeholder-glow d-flex gap-3 mt-3">
+                                                <span className="placeholder col-2" style={{ height: 38 }}></span>
+                                                <span className="placeholder col-2" style={{ height: 38 }}></span>
+                                            </div>
+                                            <div className="card-date placeholder-glow mt-2">
+                                                <span class="placeholder col-6"></span>
+                                            </div>
+                                            <div className="card-title placeholder-glow mt-2">
+                                                <span className="placeholder col-6"></span>
+                                            </div>
+                                            <div className="card-tag placeholder-glow d-flex gap-3 mt-2">
+                                                <span className="placeholder col-3"></span>
+                                                <span className="placeholder col-3"></span>
+                                            </div>
+                                        </div>
+                                    </article>
+                                </div>
+                            ))}
                         </div>
                     ) : (
                         <>
@@ -198,9 +339,9 @@ const BlogPage = () => {
                                     </button>
                                 </div>
                             )}
+
                         </>
                     )}
-
                 </div>
             </div>
         </>

@@ -1,6 +1,6 @@
 import Banner from "@/components/banner/Banner";
 import SplitRow from "@/components/split-row/SliptRow";
-import FormGeneral from "@/components/form/FormGeneral";
+import ContactForm from "@/components/form/formCMS";
 
 import { getDatabusinessConsultingPage } from "../Apis";
 import { parseBannerData, parseSplitRowData } from "../DataParser";
@@ -32,11 +32,11 @@ const businessConsulting = async () => {
                     image={CMS_HOST_URL + splitRow.urlImage}
                     title_section={splitRow.title_section}
                     description={splitRow.description}
-                    customClass="split_row team_split_row"
+                    customClass="split_row asesoria_split_row"
                 />
                 {form.form_activation && (
                     <div className="container-s mb-xxl">
-                        <FormGeneral
+                        <ContactForm
                             title={form.title}
                             subtitle={form.descripcion}
                             subject={form.subject}

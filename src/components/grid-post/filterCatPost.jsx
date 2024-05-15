@@ -3,24 +3,7 @@
 import { usePathname } from "next/navigation";
 import Link from "next/link";
 import styles from './GridPost.module.css';
-
-const slugify = (text) => {
-    if (typeof text !== 'string') {
-        return '';
-    }
-
-    const from = "ÁÉÍÓÚáéíóú";
-    const to = "AEIOUaeiou";
-
-    const newText = text.split('').map((char, i) =>
-        from.indexOf(char) !== -1 ? to[from.indexOf(char)] : char
-    ).join('');
-
-    return newText
-        .toLowerCase()
-        .replace(/ /g, '-')
-        .replace(/[^\w-]+/g, '');
-};
+import Slugify from 'Slugify';
 
 const FilterCategoriesPost = (props) => {
 
@@ -44,16 +27,16 @@ const FilterCategoriesPost = (props) => {
     //console.log(allCategories);
     //console.log(uniqueTags);
     return (
-            <div className={`${styles.filterCategories} pb-xl mb-xl`}>
-                <Link href="/noticias" className={`${router === '/noticias' ? 'current' : ''} ${styles.filterCategory}`}>
-                    Todas las categorias
+        <div className={`${styles.filterCategories} pb-xl mb-xl`}>
+            <Link href="/noticias" className={`${router === '/noticias' ? 'current' : ''} ${styles.filterCategory}`}>
+                Todas las categorias
+            </Link>
+            {sortedCategories.map((category, index) => (
+                <Link key={index} href={`/noticias/category/${Slugify(category.name)}`} className={`${`/noticias/category/${Slugify(category.name)}` === router ? 'current' : ''} ${styles.filterCategory}`}>
+                    {category.name}
                 </Link>
-                {sortedCategories.map((category, index) => (
-                    <Link key={index} href={`/noticias/category/${slugify(category.name)}`} className={`${`/noticias/category/${slugify(category.name)}` === router ? 'current' : ''} ${styles.filterCategory}`}>
-                        {category.name}
-                    </Link>
-                ))}
-            </div>
+            ))}
+        </div>
 
     );
 };

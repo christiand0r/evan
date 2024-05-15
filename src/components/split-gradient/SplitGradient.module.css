@@ -1,6 +1,6 @@
 .splitGradient h2{
     color: white;
-    font-size: var(--fs-39);
+    font-size: var(--fs-32);
     font-weight: 400;
     font-family: var(--secondary-font);
     margin-bottom: 0;
@@ -13,6 +13,7 @@
     justify-content: center;
     padding: 100px;
     color: white;
+    flex-direction: column;
 }
 
 .splitRight{
@@ -30,9 +31,13 @@
         flex-direction: column-reverse;
     }
 
+    .splitGradient > div:first-child{
+        padding: 0;
+    }
+
     .splitGradient h2 {
 
-        font-size: var(--fs-27);
+        font-size: var(--fs-22);
     }
 
     .splitLeft{
